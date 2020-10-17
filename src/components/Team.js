@@ -1,11 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Team({team}) {
+
+export default function Team({team, leagueId}) {
     const {team_id, logo, name, venue_city} = team;
 
     return (
-        <Link to={`/league/team/${team_id}`} className='single-league'>
+        <Link to={`/statistic/squad/${leagueId}/${team_id}`} className='single-league'>
             <div className='single-league-img'>
                 <img src={logo} alt={name}/>
             </div>

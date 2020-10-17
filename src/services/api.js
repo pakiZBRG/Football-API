@@ -5,14 +5,22 @@ const host = 'api-football-v1.p.rapidapi.com'
 const baseUrl = 'https://api-football-v1.p.rapidapi.com/v2/';
 const leagueUrl = `${baseUrl}leagues`;
 const singleLeagueUrl = `${baseUrl}teams/league`;
+//https://api-football-v1.p.rapidapi.com/v2/statistics/{league_id}/{team_id}
+const squadStaticsticsUrl = `${baseUrl}statistics`;
+//https://api-football-v1.p.rapidapi.com/v2/leagueTable/{league_id}
+const leagueTableUrl = `${baseUrl}leagueTable`;
+
+//https://api-football-v1.p.rapidapi.com/v2/leagues/current/
+const currentSeasonUrl = `${baseUrl}leagues/current`
+
 
 export const getLeagues = () => {
     const options = {
         method: 'GET',
         url: `${leagueUrl}`,
         headers: {
-        'x-rapidapi-host': `${host}`,
-        'x-rapidapi-key': `${apiKey}`
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
         }
     };
     
@@ -34,6 +42,61 @@ export const getSingleLeague = league_id => {
         headers: {
         'x-rapidapi-host': `${host}`,
         'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getSquadStaticstics = (league_id, team_id) => {
+    const options = {
+        method: 'GET',
+        url: `${squadStaticsticsUrl}/${league_id}/${team_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getLeagueTable = league_id => {
+    const options = {
+        method: 'GET',
+        url: `${leagueTableUrl}/${league_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+//Iskoristiti kasnije obavezno
+export const getCurrentSeason = () => {
+    const options = {
+        method: 'GET',
+        url: `${currentSeasonUrl}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
         }
     };
     

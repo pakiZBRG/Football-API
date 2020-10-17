@@ -61,19 +61,36 @@
     padding-bottom: 0.3rem;
 }
 
+.table-league{
+    width: 100%;
+    border: 1px solid gray;
+}
+
+.table-league thead tr th{
+    border: 2px solid #000;
+}
+
+.table-league tbody tr td{
+    border: 2px solid #000;
+}
+
+.table-league tbody tr td img{
+    width: 40px;
+}
+
 @media(max-width: 1400px){
     .league-row{
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
-@media(max-width: 1180px){
+@media(max-width: 1040px){
     .league-row{
         grid-template-columns: 1fr 1fr;
     }
 }
 
-@media(max-width: 790px){
+@media(max-width: 710px){
     .league-row{
         grid-template-columns: 1fr;
     }
