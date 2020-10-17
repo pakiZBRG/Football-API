@@ -8,7 +8,7 @@ export default function Teams(props) {
 
     useEffect(() => {
         getSingleLeague(props.match.params.leagueId).then(({api}) => setTeams(api.teams));
-    }, []);
+    }, [props.match]);
 
     return (
         <div className='league-flex'>

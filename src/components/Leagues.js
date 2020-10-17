@@ -16,7 +16,12 @@ export default function Leagues() {
     const seasone20 = AllLeagues.filter(league => league.season === 2019);
 
     leagueIds.map(id => {
-        seasone20.find(league => league.league_id === id ? leagues.push(league) : null)
+        seasone20.find(league => {
+            if(league.league_id === id) 
+                leagues.push(league)
+            return null;
+        });
+        return true;
     });
 
     return (
