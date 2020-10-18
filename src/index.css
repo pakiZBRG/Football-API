@@ -62,20 +62,59 @@
 }
 
 .table-league{
-    width: 100%;
-    border: 1px solid gray;
-}
-
-.table-league thead tr th{
-    border: 2px solid #000;
-}
-
-.table-league tbody tr td{
-    border: 2px solid #000;
+    width: 95%;
+    margin: 3rem auto;
+    padding: 0.5rem 0;
+    border: 2px solid rgb(192, 192, 192);
+    border-collapse: collapse;
 }
 
 .table-league tbody tr td img{
-    width: 40px;
+    height: 40px;
+    margin-right: 0.7rem;
+}
+
+.table-league tbody tr td:not(.table-group-teamname){
+    margin: 0 auto;
+}
+
+.table-league thead tr td{
+    color: gray;
+    font-weight: bold;
+    padding: 0.5rem 0;
+    border-bottom: 2px solid  rgb(192, 192, 192);
+}
+
+.table-league tbody tr td{
+    padding: 0.4rem;
+}
+
+.table-league tbody tr{
+    border-top: 2px solid rgb(192, 192, 192);
+}
+
+.table-group-teamname{
+    display: flex;
+    align-items: center;
+}
+
+.table-group-form{
+    border-radius: 3px;
+    margin: 0.1rem;
+    color: #fff;
+    padding: 0.3rem 0.3rem 0.1rem 0.3rem;
+    font-size: 1.2rem;
+}
+
+.lost{background: #d2302c;}
+.win{background: #295f2d;}
+.draw{background: #f9d342;}
+
+.width{
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
 }
 
 @media(max-width: 1400px){

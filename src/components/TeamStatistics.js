@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSquadStaticstics, getCurrentSeason } from '../services/api';
+import { getSquadStaticstics } from '../services/api';
 
 
 export default function TeamStatistics(props) {
@@ -10,7 +10,7 @@ export default function TeamStatistics(props) {
     useEffect(() => {
         getSquadStaticstics(leagueId, teamId).then(({api}) => setSquad(api.statistics))
         // getCurrentSeason().then(res => console.log(res))
-    }, [])
+    }, [leagueId, teamId])
 
     console.log(Squad)
 

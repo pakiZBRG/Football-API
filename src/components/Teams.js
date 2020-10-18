@@ -16,26 +16,31 @@ export default function Teams(props) {
 
     return (
         <React.Fragment>
-            <div className='table-league'>
-                <div>
-                        <p>No.</p>
-                        <p>Name</p>
-                        <p>W</p>
-                        <p>D</p>
-                        <p>L</p>
-                        <p>A</p>
-                        <p>F</p>
-                        <p>Form</p>
-                        <p>Diff</p>
-                        <p>Points</p>
-                </div>
-                <div>
-                    {Tables.map((team, i) => (<div key={i}><Table team={team}/></div>))}
-                </div>
-            </div>
+            {Tables && 
+                <table className='table-league'>
+                    <thead>
+                        <tr>
+                            <td style={{textAlign: 'center'}}></td>
+                            <td className='none'>Club</td>
+                            <td style={{textAlign: 'center'}}>P</td>
+                            <td style={{textAlign: 'center'}}>W</td>
+                            <td style={{textAlign: 'center'}}>D</td>
+                            <td style={{textAlign: 'center'}}>L</td>
+                            <td style={{textAlign: 'center'}}>A</td>
+                            <td style={{textAlign: 'center'}}>F</td>
+                            <td style={{textAlign: 'center'}}>Diff</td>
+                            <td style={{textAlign: 'center'}}>Points</td>
+                            <td style={{textAlign: 'center'}}>Form</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {Tables.map((team, i) => (<tr key={i}><Table team={team}/></tr>))}
+                    </tbody>
+                </table>
+            }
             <div className='league-flex'>
                 <div className='league-row'>
-                    {Teams.map((team, i) => <Team team={team} key={i} leagueId={leagueId}/>)}
+                    {Teams && Teams.map((team, i) => <Team team={team} key={i} leagueId={leagueId}/>)}
                 </div>
             </div>
         </React.Fragment>
