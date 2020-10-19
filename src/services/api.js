@@ -9,6 +9,9 @@ const singleLeagueUrl = `${baseUrl}teams/league`;
 const squadStaticsticsUrl = `${baseUrl}statistics`;
 //https://api-football-v1.p.rapidapi.com/v2/leagueTable/{league_id}
 const leagueTableUrl = `${baseUrl}leagueTable`;
+//https://api-football-v1.p.rapidapi.com/v2/topscorers/{league_id}
+const topScorerUrl = `${baseUrl}topscorers`;
+
 
 //https://api-football-v1.p.rapidapi.com/v2/leagues/current/
 const currentSeasonUrl = `${baseUrl}leagues/current`
@@ -75,6 +78,24 @@ export const getLeagueTable = league_id => {
     const options = {
         method: 'GET',
         url: `${leagueTableUrl}/${league_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getTopScorer = league_id => {
+    const options = {
+        method: 'GET',
+        url: `${topScorerUrl}/${league_id}`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`

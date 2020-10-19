@@ -7,6 +7,10 @@
     text-decoration: none;
 }
 
+body{
+    overflow-x: hidden;
+}
+
 .league-flex{
     width: 80%;
     margin: 0 auto;
@@ -67,7 +71,7 @@
     padding: 0.5rem 0;
     border: 2px solid rgb(192, 192, 192);
     border-collapse: collapse;
-    overflow-x: scroll;
+    overflow: scroll;
 }
 
 .table-league tbody tr td img{
@@ -110,13 +114,22 @@
 .lost{background: #d2302c;}
 .win{background: #295f2d;}
 .draw{background: #f9d342;}
-
+.center{text-align: center;}
 .width{
     width: 50%;
     margin: 0 auto;
     display: flex;
     justify-content: space-around;
 }
+
+.promotion{
+    background: rgb(195, 240, 255);
+}
+
+.relegation{
+    background: rgb(255, 106, 136);
+}
+
 
 @media(max-width: 1400px){
     .league-row{
