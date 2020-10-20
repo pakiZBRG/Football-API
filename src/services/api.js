@@ -11,6 +11,8 @@ const squadStaticsticsUrl = `${baseUrl}statistics`;
 const leagueTableUrl = `${baseUrl}leagueTable`;
 //https://api-football-v1.p.rapidapi.com/v2/topscorers/{league_id}
 const topScorerUrl = `${baseUrl}topscorers`;
+//https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season} 2019-2020
+const squadUrl = `${baseUrl}/players/squad`
 
 
 //https://api-football-v1.p.rapidapi.com/v2/leagues/current/
@@ -96,6 +98,24 @@ export const getTopScorer = league_id => {
     const options = {
         method: 'GET',
         url: `${topScorerUrl}/${league_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getSquad = (team_id, season) => {
+    const options = {
+        method: 'GET',
+        url: `${squadUrl}/${team_id}/${season}`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`

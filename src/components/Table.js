@@ -7,7 +7,6 @@ export default function Table({team}) {
     // Get W, D, L from forme
     const form = forme.split('');
 
-
     return (
         <tr className={`
             ${description && description.search('Promotion') ? 'relegation' : ''}

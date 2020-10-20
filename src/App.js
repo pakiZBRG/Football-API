@@ -10,7 +10,7 @@ function App() {
   return (
     <Router>
       <Route path='/' exact component={Leagues}/>
-      <Route path='/league/:leagueId' component={Teams}/>
+      <Route path='/league/:name/:leagueId' component={Teams}/>
       <Route path='/statistic/squad/:leagueId/:teamId' component={TeamStatistics}/>
     </Router>
   );

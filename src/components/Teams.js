@@ -7,23 +7,22 @@ import Scorer from './TopScorer';
 
 export default function Teams(props) {
     const leagueId = props.match.params.leagueId;
+    const leagueName = props.match.params.name;
     const [Teams, setTeams] = useState([]);
     const [Tables, setTables] = useState([]);
     const [TopScorer, setTopScorer] = useState([]);
 
     useEffect(() => {
         getSingleLeague(leagueId).then(({api}) => setTeams(api.teams));
-        getLeagueTable(leagueId).then(({api}) => setTables(api.standings[0]));
+        getLeagueTable(leagueId).then(({api}) => setTables(api.standings));
         getTopScorer(leagueId).then(({api}) => setTopScorer(api.topscorers));
     }, [leagueId]);
 
-    console.log(TopScorer)
-
     return (
         <React.Fragment>
-            {Tables && 
+            {Tables[0] && 
                 <>
-                    <h2 className='center'>Table 2019/2020</h2>
+                    <h2 className='center' style={{marginTop: '2rem'}}>{leagueName} 2019/2020</h2>
                     <table className='table-league'>
                         <thead>
                             <tr>
@@ -41,7 +40,13 @@ export default function Teams(props) {
                             </tr>
                         </thead>
                         <tbody>
-                            {Tables.map((team, i) => <Table team={team} key={i}/>)}
+                            {
+                            leagueId !== 530 
+                                ? 
+                            (Tables.map(group => group.map((team, i) => <Table team={team} key={i}/>))) 
+                                : 
+                            (Tables[0].map((team, i) => <Table team={team} key={i}/>))
+                            }
                         </tbody>
                     </table>
                 </>
