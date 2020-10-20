@@ -12,7 +12,7 @@ import belgium from '../images/belgium.png';
 import { Link } from 'react-router-dom';
 
 export default function League({league}) {
-    const {league_id, country, logo, name} = league;
+    const {league_id, country, flag, logo, name} = league;
 
     const missingImages = () => {
         switch(league_id){
@@ -48,7 +48,7 @@ export default function League({league}) {
             </div>
             <div className='single-league-text'>
                 <h2>{name}</h2>
-                <p>{country}</p>
+                <p>{flag !== null ? <img src={flag} alt={country}/> : null}{country}</p>
             </div>
         </Link>
     )
