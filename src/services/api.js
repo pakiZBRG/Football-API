@@ -13,6 +13,10 @@ const leagueTableUrl = `${baseUrl}leagueTable`;
 const topScorerUrl = `${baseUrl}topscorers`;
 //https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season} 2019-2020
 const squadUrl = `${baseUrl}/players/squad`
+//https://api-football-v1.p.rapidapi.com/v2/leagues/seasonsAvailable/{league_id}
+const leagueBySeasonUrl = `${baseUrl}leagues/seasonsAvailable`
+//https://api-football-v1.p.rapidapi.com/v2/leagues/seasonsAvailable/{league_id}/{season}
+const tableBySeasonUrl = `${baseUrl}leagues/seasonsAvailable`;
 
 
 //https://api-football-v1.p.rapidapi.com/v2/leagues/current/
@@ -116,6 +120,42 @@ export const getSquad = (team_id, season) => {
     const options = {
         method: 'GET',
         url: `${squadUrl}/${team_id}/${season}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getLeagueBySeason = league_id => {
+    const options = {
+        method: 'GET',
+        url: `${leagueBySeasonUrl}/${league_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const singleLeague = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return singleLeague;
+}
+
+export const getTableBySeason = (league_id, season) => {
+    const options = {
+        method: 'GET',
+        url: `${tableBySeasonUrl}/${league_id}/${season}`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`

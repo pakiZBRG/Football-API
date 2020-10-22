@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getSingleLeague, getLeagueTable, getTopScorer } from '../services/api';
+import { getSingleLeague, getLeagueTable, getTopScorer, getLeagueBySeason, getTableBySeason } from '../services/api';
 import Team from './Team';
 import Table from './Table';
 import Scorer from './TopScorer';
@@ -8,21 +8,45 @@ import Scorer from './TopScorer';
 export default function Teams(props) {
     const leagueId = props.match.params.leagueId;
     const leagueName = props.match.params.name;
-    const [Teams, setTeams] = useState([]);
-    const [Tables, setTables] = useState([]);
-    const [TopScorer, setTopScorer] = useState([]);
+    const [ Teams, setTeams] = useState([]);
+    const [ Tables, setTables] = useState([]);
+    const [ TopScorer, setTopScorer] = useState([]);
+    const [ LeaguesBySeason, setLeaguesBySeason ] = useState([]);
+    const [ TableBySeason, setTableBySeason ] = useState([]);
+    const [ Year, setYear ] = useState(2019);
 
     useEffect(() => {
         getSingleLeague(leagueId).then(({api}) => setTeams(api.teams));
         getLeagueTable(leagueId).then(({api}) => setTables(api.standings));
         getTopScorer(leagueId).then(({api}) => setTopScorer(api.topscorers));
-    }, [leagueId]);
+        getLeagueBySeason(leagueId).then(({api}) => setLeaguesBySeason(api.leagues));
+        getTableBySeason(leagueId, Year).then(({api}) => setTableBySeason(api.leagues[0]));
+    }, [leagueId, Year]);
+
+    const {league_id, season} = TableBySeason;
+
+    const displayYear = e => {
+        getLeagueTable(league_id).then(({api}) => setTables(api.standings));
+        setYear(e.target.value)
+        console.log(season, Tables)
+    }
+
 
     return (
         <React.Fragment>
             {Tables[0] && 
                 <>
-                    <h2 className='center' style={{marginTop: '2rem'}}>{leagueName} 2019/2020</h2>
+                    <h2 className='center' style={{marginTop: '2rem'}}>{leagueName} {Year}</h2>
+                    <select 
+                        onChange={displayYear} 
+                        value={Year}
+                    >
+                        {LeaguesBySeason.map(({season}, i) => 
+                            <option key={i} value={season}>
+                                {season}
+                            </option>
+                        )}
+                    </select>
                     <table className='table-league'>
                         <thead>
                             <tr>
