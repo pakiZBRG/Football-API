@@ -12,16 +12,21 @@ const leagueTableUrl = `${baseUrl}leagueTable`;
 //https://api-football-v1.p.rapidapi.com/v2/topscorers/{league_id}
 const topScorerUrl = `${baseUrl}topscorers`;
 //https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season} 2019-2020
-const squadUrl = `${baseUrl}/players/squad`
+const squadUrl = `${baseUrl}players/squad`
 //https://api-football-v1.p.rapidapi.com/v2/leagues/seasonsAvailable/{league_id}
 const leagueBySeasonUrl = `${baseUrl}leagues/seasonsAvailable`
 //https://api-football-v1.p.rapidapi.com/v2/leagues/seasonsAvailable/{league_id}/{season}
 const tableBySeasonUrl = `${baseUrl}leagues/seasonsAvailable`;
+//https://api-football-v1.p.rapidapi.com/v2/teams/team/{team_id}
+const teamDataUrl = `${baseUrl}teams/team`;
+//https://api-football-v1.p.rapidapi.com/v2/coachs/team/{team_id}
+const coachUrl = `${baseUrl}coachs/team`
+//https://api-football-v1.p.rapidapi.com/v2/players/player/{player_id}
+const playerUrl = `${baseUrl}players/player`
 
 
-//https://api-football-v1.p.rapidapi.com/v2/leagues/current/
-const currentSeasonUrl = `${baseUrl}leagues/current`
-
+// 40 picked leagues to show
+export const leagueIds = [524, 565, 581, 1063, 1560, 583, 754, 755, 1564, 753, 869, 891, 902, 1601, 525, 526, 783, 1237, 775, 776, 973, 1629, 779, 782, 940, 1612, 765, 766, 1608, 949, 566, 784, 1591, 576, 942, 511, 947, 282, 357, 358, 321, 780, 899, 1522, 573, 1232, 656, 1524, 787, 910, 577, 568, 793, 294, 514, 530];
 
 export const getLeagues = () => {
     const options = {
@@ -40,9 +45,6 @@ export const getLeagues = () => {
 
     return leagues;
 }
-
-// 40 picked leagues to show
-export const leagueIds = [524, 565, 581, 1063, 1560, 583, 754, 755, 1564, 753, 869, 891, 902, 1601, 525, 526, 783, 1237, 775, 776, 973, 1629, 779, 782, 940, 1612, 765, 766, 1608, 949, 566, 784, 1591, 576, 942, 511, 947, 282, 357, 358, 321, 780, 899, 1522, 573, 1232, 656, 1524, 787, 910, 577, 568, 793, 514, 530];
 
 export const getSingleLeague = league_id => {
     const options = {
@@ -170,21 +172,56 @@ export const getTableBySeason = (league_id, season) => {
     return singleLeague;
 }
 
-//Iskoristiti kasnije obavezno
-export const getCurrentSeason = () => {
+export const getTeamData = team_id => {
     const options = {
         method: 'GET',
-        url: `${currentSeasonUrl}`,
+        url: `${teamDataUrl}/${team_id}`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`
         }
     };
     
-    const singleLeague = axios
+    const leagues = axios
         .request(options)
         .then(({data}) => data)
         .catch(error => console.log(error));
 
-    return singleLeague;
+    return leagues;
+}
+
+export const getCoach = team_id => {
+    const options = {
+        method: 'GET',
+        url: `${coachUrl}/${team_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const leagues = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return leagues;
+}
+
+export const getPlayer = player_id => {
+    const options = {
+        method: 'GET',
+        url: `${playerUrl}/${player_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const leagues = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return leagues;
 }

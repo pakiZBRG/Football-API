@@ -26,6 +26,7 @@ export default function Table({team}) {
             (description && !description.search('8th') ? 'promotion' : '') ||
             (description && !description.search('16th') ? 'promotion' : '') ||
             (description && !description.search('UEFA') ? 'promotion' : '') ||
+            (description && !description.search('Final Series') ? 'promotion' : '') ||
             (description && !description.search('Champion') ? 'promotion' : '') ||
             (description && !description.search('Promotion') ? 'promotion' : '')}
 
@@ -36,8 +37,7 @@ export default function Table({team}) {
             <td className='center'>{win}</td>
             <td className='center'>{draw}</td>
             <td className='center'>{lose}</td>
-            <td className='center'>{goalsFor}</td>
-            <td className='center'>{goalsAgainst}</td>
+            <td className='center'>{goalsFor}:{goalsAgainst}</td>
             <td className='center'>{goalsDiff}</td>
             <td className='center'>{points}</td>
             <td className='center'>

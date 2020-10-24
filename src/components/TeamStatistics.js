@@ -1,36 +1,40 @@
 import React, { useEffect, useState } from 'react';
-import { getSquadStaticstics } from '../services/api';
-// import Player from './Player';
+import { getSquadStaticstics, getTeamData, getSquad, getCoach } from '../services/api';
+import Player from './Player';
+import Overview from './Overview';
 
 
 export default function TeamStatistics(props) {
     const teamId = props.match.params.teamId;
     const leagueId = props.match.params.leagueId;
     const [Info, setInfo] = useState([]);
-    // const [Squad, setSquad] = useState([]);
+    const [TeamData, setTeamData] = useState([]);
+    const [Coach, setCoach] = useState([]);
+    const [Squad, setSquad] = useState([]);
 
     useEffect(() => {
         getSquadStaticstics(leagueId, teamId).then(({api}) => setInfo(api.statistics));
-        // getSquad(teamId, "2018").then(({api}) => setSquad(api));
-        // getCurrentSeason().then(res => console.log(res))
+        getTeamData(teamId).then(({api}) => setTeamData(api.teams[0]));
+        getSquad(teamId, "2019").then(({api}) => setSquad(api.players));
+        getCoach(teamId).then(({api}) => setCoach(api.coachs[0]));
     }, [leagueId, teamId])
 
-    // console.log(Squad)
-    const { goals, matchs } = Info;
+    const {logo, country, name, founded, venue_city, venue_name, venue_capacity} = TeamData
 
     return (
         <div>
-            {goals && matchs && 
-                <div>
-                    <p>Given: {goals.goalsFor.total}</p>
-                    <p>Received: {goals.goalsAgainst.total}</p>
-                    <p>Played: {matchs.matchsPlayed.total}</p>
-                    <p>Win: {matchs.wins.total}</p>
-                    <p>Draw: {matchs.draws.total}</p>
-                    <p>Lost: {matchs.loses.total}</p>
+            {TeamData &&
+                <div className='team-info'>
+                    <img src={logo} alt={name}/>
+                    <h1>{name}</h1>
+                    <p><i className="fa fa-calendar"></i> {founded}</p>
+                    <p><i className="fa fa-map-marker"></i> {country}, {venue_city}</p>
+                    <p><i className="fa fa-futbol"></i> {venue_name} ({venue_capacity})</p>
+                    {Coach && <p><i className="fa fa-user"></i> {Coach.name} ({Coach.nationality})</p>}
                 </div>
             }
-            {/* {Squad && Squad.map((player, i) => <Player player={player} key={i}/>)} */}
+            {Info && <Overview info={Info}/>}
+            {Squad !== [] && <Player squad={Squad}/>}
         </div>
     )
 }

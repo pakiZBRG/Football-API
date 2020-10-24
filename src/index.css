@@ -103,7 +103,6 @@ body{
     border-top: 2px solid rgb(192, 192, 192);
 }
 
-
 .table-group-teamname{
     display: flex;
     align-items: center;
@@ -136,21 +135,118 @@ body{
     background: rgb(255, 106, 136);
 }
 
+.team-info{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.team-info img{
+    width: 220px;
+}
+
+.team-info h1{margin-bottom: 0.5rem}
+
+.team-info p{
+    font-size: 1.25rem;
+    margin-bottom: 0.4rem;
+}
+
+.fa-calendar {color: blue;}
+.fa-map-marker {color: crimson}
+.fa-user {color: gray;}
+
+.squad-grid{
+    width: 90%;
+    margin: 2rem auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.squad-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 1.2rem;
+    padding: 1rem 0;
+    box-shadow: 0px 0px 3px #000;
+    transition: box-shadow 400ms;
+    position: relative;
+}
+
+.squad-flex:hover{
+    box-shadow: 0px 0px 20px #000;
+}
+
+.Attacker {
+    background: #d2302c;
+    color: #f7f7f9;
+}
+
+.Goalkeeper{
+    background: #f9d342;
+    color: #292826;
+    mix-blend-mode: screen;
+}
+
+.Defender{
+    background: #2f3c7e;
+    color: #fbeaeb;
+}
+
+.Midfielder{
+    background: #317773;
+    color: #e2d1f9;
+}
+
+.players-position {
+    text-align: center;
+}
+
+.players-position .position{
+    position: relative;
+    display: inline-flex;
+}
+
+.players-position .position::before{
+    position: absolute;
+    content: '';
+    bottom: 0;
+    left: 0;
+    display: inline;
+    width: 100%;
+    height: 4px;
+    background: gray;
+}
+
+.players-position .position:first-child{
+    margin-top: 3rem;
+}
+
+.background-lastname{
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-size: 4rem;
+}
+
 
 @media(max-width: 1400px){
-    .league-row{
+    .league-row, .squad-grid{
         grid-template-columns: 1fr 1fr 1fr;
     }
 }
 
 @media(max-width: 1040px){
-    .league-row{
+    .league-row, .squad-grid{
         grid-template-columns: 1fr 1fr;
     }
 }
 
 @media(max-width: 710px){
-    .league-row{
+    .league-row, .squad-grid{
         grid-template-columns: 1fr;
     }
 }
