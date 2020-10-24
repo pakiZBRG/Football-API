@@ -2,17 +2,35 @@ import React from 'react';
 
 export default function Overvies({info}){
     const { goals, matchs } = info;
-    console.log(info)
+
     return (
         <div>
             {goals && matchs && 
-                <div>
-                    <p>Given: {goals.goalsFor.total}</p>
-                    <p>Received: {goals.goalsAgainst.total}</p>
-                    <p>Played: {matchs.matchsPlayed.total}</p>
-                    <p>Win: {matchs.wins.total}</p>
-                    <p>Draw: {matchs.draws.total}</p>
-                    <p>Lost: {matchs.loses.total}</p>
+                <div className='team-grid'>
+                    <div className='team-flex'>
+                        <h2>Home</h2>
+                        <h2>Wins: {matchs.wins.home}</h2>
+                        <h2>Draws: {matchs.draws.home}</h2>
+                        <h2>Loses: {matchs.loses.home}</h2>
+                        <h2>Given: {goals.goalsFor.home} <i className='fa fa-futbol'></i></h2>
+                        <h2>Received: {goals.goalsAgainst.home} <i className='fa fa-futbol'></i></h2>
+                    </div>
+                    <div className='team-flex'>
+                        <h2>Away</h2>
+                        <h2>Wins: {matchs.wins.away}</h2>
+                        <h2>Draws: {matchs.draws.away}</h2>
+                        <h2>Loses: {matchs.loses.away}</h2>
+                        <h2>Given: {goals.goalsFor.away} <i className='fa fa-futbol'></i></h2>
+                        <h2>Received: {goals.goalsAgainst.away} <i className='fa fa-futbol'></i></h2>
+                    </div>
+                    <div className='team-flex'>
+                        <h2>Total</h2>
+                        <h2>Wins: {matchs.wins.total}</h2>
+                        <h2>Draws: {matchs.draws.total}</h2>
+                        <h2>Loses: {matchs.loses.total}</h2>
+                        <h2>Given: {goals.goalsFor.total} <i className='fa fa-futbol'></i></h2>
+                        <h2>Received: {goals.goalsAgainst.total} <i className='fa fa-futbol'></i></h2>
+                    </div>
                 </div>
             }
         </div>

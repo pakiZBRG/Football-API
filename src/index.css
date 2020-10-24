@@ -232,6 +232,22 @@ body{
     font-size: 4rem;
 }
 
+.team-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    width: 95%;
+    margin: 0 auto;
+}
+
+.team-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    box-shadow: 0px 0px 3px #000;
+    margin: 1rem;
+}
+
 
 @media(max-width: 1400px){
     .league-row, .squad-grid{
