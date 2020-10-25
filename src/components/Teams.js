@@ -33,18 +33,21 @@ export default function Teams(props) {
 
     return (
         <React.Fragment>
-            <h2 className='center' style={{marginTop: '2rem'}}>{leagueName} {Year}</h2>
-            <select 
-                onChange={displayYear} 
-                value={Year}
-                className='select-year'
-            >
-                {LeaguesBySeason.map(({season}, i) => 
-                    <option key={i} value={season}>
-                        {season} / {season+1}
-                    </option>
-                )}
-            </select>
+            <h2 className='center' style={{marginTop: '2rem'}}>
+                <span style={{marginBottom: '1rem', display: 'flex', justifyContent: 'center', alignItems: 'center'}}>{leagueName} {Year}</span>
+                <select 
+                    onChange={displayYear} 
+                    value={Year}
+                    className='select-year'
+                >
+                    {LeaguesBySeason.map(({season}, i) => 
+                        <option key={i} value={season}>
+                            {season} / {season+1}
+                        </option>
+                    )}
+                </select>
+            </h2>
+            
             {Tables[0] && 
                 <>
                     <table className='table-league'>

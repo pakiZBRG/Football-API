@@ -8,7 +8,7 @@ export default function Overvies({info}){
             {goals && matchs && 
                 <div className='team-grid'>
                     <div className='team-flex'>
-                        <h2>Home</h2>
+                        <h1>Home</h1>
                         <h2>Wins: {matchs.wins.home}</h2>
                         <h2>Draws: {matchs.draws.home}</h2>
                         <h2>Loses: {matchs.loses.home}</h2>
@@ -16,7 +16,7 @@ export default function Overvies({info}){
                         <h2>Received: {goals.goalsAgainst.home} <i className='fa fa-futbol'></i></h2>
                     </div>
                     <div className='team-flex'>
-                        <h2>Away</h2>
+                        <h1>Away</h1>
                         <h2>Wins: {matchs.wins.away}</h2>
                         <h2>Draws: {matchs.draws.away}</h2>
                         <h2>Loses: {matchs.loses.away}</h2>
@@ -24,7 +24,7 @@ export default function Overvies({info}){
                         <h2>Received: {goals.goalsAgainst.away} <i className='fa fa-futbol'></i></h2>
                     </div>
                     <div className='team-flex'>
-                        <h2>Total</h2>
+                        <h1>Total</h1>
                         <h2>Wins: {matchs.wins.total}</h2>
                         <h2>Draws: {matchs.draws.total}</h2>
                         <h2>Loses: {matchs.loses.total}</h2>

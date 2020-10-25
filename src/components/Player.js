@@ -22,10 +22,10 @@ export default function Player({squad}){
                 {pos.map((player, i) => (
                     <div key={i} className={`squad-flex ${player.position === name ? name : null}`}>
                         <h2>{player.player_name}</h2>
+                        <h3>{player.nationality}</h3>
                         <p>{player.height}</p>
                         <p>{player.weight}</p>
                         <p>{player.birth_date}</p>
-                        <h3>{player.nationality}</h3>
                         <p className='background-lastname' style={{mixBlendMode: style}}>{player.lastname}</p>
                     </div>
                 ))}
@@ -38,7 +38,7 @@ export default function Player({squad}){
             {displayPlayers(Goalkeeper, "Goalkeeper", "screen")}
             {displayPlayers(Defender, "Defender", "multiply")}
             {displayPlayers(Midfielder, "Midfielder", "multiply")}
-            {displayPlayers(Attacker, "Attacker", "color-burn")}
+            {displayPlayers(Attacker, "Attacker", "multiply")}
         </>
     )
 }

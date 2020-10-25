@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { getSquadStaticstics, getTeamData, getSquad, getCoach } from '../services/api';
+import { getSquadStaticstics, getTeamData, getSquad, getCoach, getTransfer } from '../services/api';
 import Player from './Player';
 import Overview from './Overview';
+import TransferMarket from './Transfer';
 
 
 export default function TeamStatistics(props) {
@@ -11,13 +12,15 @@ export default function TeamStatistics(props) {
     const [TeamData, setTeamData] = useState([]);
     const [Coach, setCoach] = useState([]);
     const [Squad, setSquad] = useState([]);
+    const [Transfer, setTransfer] = useState([]);
 
     useEffect(() => {
         getSquadStaticstics(leagueId, teamId).then(({api}) => setInfo(api.statistics));
         getTeamData(teamId).then(({api}) => setTeamData(api.teams[0]));
         getSquad(teamId, "2019").then(({api}) => setSquad(api.players));
         getCoach(teamId).then(({api}) => setCoach(api.coachs[0]));
-    }, [leagueId, teamId])
+        getTransfer(teamId).then(({api}) => setTransfer(api.transfers));
+    }, [leagueId, teamId]);
 
     const {logo, country, name, founded, venue_city, venue_name, venue_capacity} = TeamData
 
@@ -35,6 +38,7 @@ export default function TeamStatistics(props) {
             }
             {Info && <Overview info={Info}/>}
             {Squad !== [] && <Player squad={Squad}/>}
+            {Transfer && <TransferMarket transfer={Transfer}/>}
         </div>
     )
 }
