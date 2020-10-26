@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 
 export default function Player({squad}){
@@ -20,14 +21,13 @@ export default function Player({squad}){
             <h2 className='position'>{`${name}s`} ({pos.length})</h2>
             <div className='squad-grid'>
                 {pos.map((player, i) => (
-                    <div key={i} className={`squad-flex ${player.position === name ? name : null}`}>
+                    <Link to={`/player/${player.player_name}/${player.player_id}`} key={i} className={`squad-flex ${player.position === name ? name : null}`}>
                         <h2>{player.player_name}</h2>
                         <h3>{player.nationality}</h3>
-                        <p>{player.height}</p>
-                        <p>{player.weight}</p>
+                        <p>Age: {player.age}</p>
                         <p>{player.birth_date}</p>
                         <p className='background-lastname' style={{mixBlendMode: style}}>{player.lastname}</p>
-                    </div>
+                    </Link>
                 ))}
             </div> 
         </div>

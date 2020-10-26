@@ -38,7 +38,7 @@ export default function TeamStatistics(props) {
             }
             {Info && <Overview info={Info}/>}
             {Squad !== [] && <Player squad={Squad}/>}
-            {Transfer && <TransferMarket transfer={Transfer}/>}
+            {Transfer && <TransferMarket transfer={Transfer} name={name}/>}
         </div>
     )
 }

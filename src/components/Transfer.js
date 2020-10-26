@@ -1,7 +1,7 @@
 import React from 'react';
 import shortid from 'shortid';
 
-export default function Transfer({transfer}){    
+export default function Transfer({transfer, name}){    
     const market2020 = []
     const market2019 = []
     const market2018 = []
@@ -25,14 +25,12 @@ export default function Transfer({transfer}){
                 <h1 className='center'>Transfer Window {year}</h1>
                 <div className='squad-grid'>
                     {season.map(player => {
-                        const {player_name, type, transfer_date, team_in, team_out} = player
-                        const date = transfer_date.split('-')
+                        const {player_name, type, team_in, team_out} = player
                         return (
                             <div className='team-flex' key={shortid.generate()}>
-                                <h2>{player_name}</h2>
-                                <p>{team_out.team_name} {`----->`} {team_in.team_name}</p>
-                                <p>{type}</p>
-                                <p>{`${date[2]}/${date[1]}/${date[0]}`}</p>
+                                <h3>{player_name}</h3>
+                                <p style={{margin: '.4rem'}}>{team_out.team_name} {`----->`} {team_in.team_name}</p>
+                                <h3 className={`${team_in.team_name === name && type.includes('€') ? 'deficit' : null} ${team_in.team_name !== name && type.includes('€') ? 'profit' : null}`}>{type}</h3>
                             </div>
                         )
                     })}

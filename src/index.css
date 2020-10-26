@@ -251,6 +251,8 @@ body{
 
 .team-flex h1 {margin-bottom: 0.6rem}
 
+.profit{color: #168118}
+.deficit{color: crimson}
 
 @media(max-width: 1400px){
     .league-row, .squad-grid{

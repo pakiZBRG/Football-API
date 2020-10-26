@@ -2,7 +2,6 @@ import React from 'react';
 
 export default function TopScorer({scorer}) {
     const {player_name, team_name, penalty: {success}, goals: {total, assists}, games: {appearences}} = scorer;
-
     return(
         <tr>
             <td><h3>{player_name}</h3> <p style={{color: 'rgb(68, 68, 68)'}}>{team_name}</p></td>
