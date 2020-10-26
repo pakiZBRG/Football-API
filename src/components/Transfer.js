@@ -23,18 +23,29 @@ export default function Transfer({transfer, name}){
         return (
             <React.Fragment>
                 <h1 className='center'>Transfer Window {year}</h1>
-                <div className='squad-grid'>
-                    {season.map(player => {
-                        const {player_name, type, team_in, team_out} = player
-                        return (
-                            <div className='team-flex' key={shortid.generate()}>
-                                <h3>{player_name}</h3>
-                                <p style={{margin: '.4rem'}}>{team_out.team_name} {`----->`} {team_in.team_name}</p>
-                                <h3 className={`${team_in.team_name === name && type.includes('€') ? 'deficit' : null} ${team_in.team_name !== name && type.includes('€') ? 'profit' : null}`}>{type}</h3>
-                            </div>
-                        )
-                    })}
-                </div>
+                <table className='table-league'>
+                    <thead>
+                        <tr>
+                            <td>Name</td>
+                            <td>From</td>
+                            <td>To</td>
+                            <td>Payment</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {season.map(player => {
+                            const {player_name, type, team_in, team_out} = player
+                            return (
+                                <tr key={shortid.generate()}>
+                                    <td><h4>{player_name}</h4></td>
+                                    <td>{team_out.team_name}</td>
+                                    <td>{team_in.team_name}</td>
+                                    <td className={`${team_in.team_name === name && type.includes('€') ? 'deficit' : null} ${team_in.team_name !== name && type.includes('€') ? 'profit' : null}`}><strong>{type}</strong></td>
+                                </tr>
+                            )
+                        })} 
+                    </tbody>
+                </table>
             </React.Fragment>
         )
     }

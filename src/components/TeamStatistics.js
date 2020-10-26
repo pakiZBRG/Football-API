@@ -22,6 +22,8 @@ export default function TeamStatistics(props) {
         getTransfer(teamId).then(({api}) => setTransfer(api.transfers));
     }, [leagueId, teamId]);
 
+    console.log(Transfer);
+
     const {logo, country, name, founded, venue_city, venue_name, venue_capacity} = TeamData
 
     return (
@@ -38,7 +40,7 @@ export default function TeamStatistics(props) {
             }
             {Info && <Overview info={Info}/>}
             {Squad !== [] && <Player squad={Squad}/>}
-            {Transfer && <TransferMarket transfer={Transfer} name={name}/>}
+            {Transfer && <TransferMarket transfer={Transfer} logo={logo} name={name}/>}
         </div>
     )
 }

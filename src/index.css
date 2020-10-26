@@ -229,7 +229,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 4rem;
+    font-size: 3.5rem;
 }
 
 .team-grid{
@@ -276,9 +276,5 @@ body{
 @media(max-width: 710px){
     .league-row, .squad-grid{
         grid-template-columns: 1fr;
-    }
-
-    .background-lastname{
-        font-size: 3.5rem;
     }
 }

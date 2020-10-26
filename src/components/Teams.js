@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getSingleLeague, getLeagueTable, getTopScorer, getLeagueBySeason, getTableBySeason } from '../services/api';
 import Team from './Team';
-import Table from './Table';
+import UCLTable from './UCLTable';
 import Scorer from './TopScorer';
 
 
@@ -50,52 +50,8 @@ export default function Teams(props) {
             
             {Tables[0] && 
                 <>
-                    <table className='table-league'>
-                        <thead>
-                            <tr>
-                                <td className='center'></td>
-                                <td className='none'>Club</td>
-                                <td className='center'>P</td>
-                                <td className='center'>W</td>
-                                <td className='center'>D</td>
-                                <td className='center'>L</td>
-                                <td className='center'>Goals</td>
-                                <td className='center'>Diff</td>
-                                <td className='center'>Points</td>
-                                <td className='center'>Form</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {
-                            leagueId === 530 
-                                ? 
-                            (Tables.map(group => group.map((team, i) => <Table team={team} key={i}/>))) 
-                                : 
-                            (leagueId === 294 
-                                ?
-                            Tables[0].map((team, i) => <Table team={team} key={i}/>) 
-                                :
-                            Tables.map(group => group.map((team, i) => <Table team={team} key={i}/>))
-                            )
-                            }
-                        </tbody>
-                    </table>
-                    {/* TOP SCORER */}
-                    <h2 className='center'>Top Scorer</h2>
-                    <table className='table-league' style={{width: '70%'}}>
-                        <thead>
-                            <tr>
-                                <td>Player</td>
-                                <td className='center'>Appereances</td>
-                                <td className='center'>Assists</td>
-                                <td className='center'>Goals (Penalties)</td>
-                                <td className='center'>Ratio</td>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {TopScorer.map((scorer, i) => <Scorer scorer={scorer} key={i}/>)}
-                        </tbody>
-                    </table>
+                    <UCLTable groups={Tables}/>
+                    <Scorer scorers={TopScorer}/>
                 </>
             }
             <div className='league-flex'>
