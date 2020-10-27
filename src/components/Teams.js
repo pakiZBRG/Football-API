@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { getSingleLeague, getLeagueTable, getTopScorer, getLeagueBySeason, getTableBySeason } from '../services/api';
+import { getSingleLeague, getLeagueTable, getTopScorer, getLeagueBySeason, getTableBySeason, getFixtures } from '../services/api';
 import Team from './Team';
 import UCLTable from './UCLTable';
 import Scorer from './TopScorer';
+import Fixtures from './Fixtures';
 
 
 export default function Teams(props) {
@@ -14,6 +15,7 @@ export default function Teams(props) {
     const [ LeaguesBySeason, setLeaguesBySeason ] = useState([]);
     const [ TableBySeason, setTableBySeason ] = useState([]);
     const [ Year, setYear ] = useState(2019);
+    const [ Fixture, setFixture ] = useState([]);
 
     useEffect(() => {
         getTableBySeason(leagueId, Year).then(({api}) => setTableBySeason(api.leagues[0]));
@@ -30,6 +32,12 @@ export default function Teams(props) {
         getTopScorer(league_id).then(({api}) => setTopScorer(api.topscorers));
         setYear(e.target.value)
     }
+
+    const getFixture = () => {
+        getFixtures(leagueId).then(({api}) => setFixture(api.fixtures));
+    }
+
+    console.log(Fixture)
 
     return (
         <React.Fragment>
@@ -58,6 +66,16 @@ export default function Teams(props) {
                 <div className='league-row'>
                     {Teams && Teams.map((team, i) => <Team team={team} key={i} leagueId={leagueId}/>)}
                 </div>
+            </div>
+            <div>
+                {LeaguesBySeason[0] && LeaguesBySeason[0].type === 'Cup' 
+                    ? 
+                <>
+                    <button onClick={getFixture}>Get Fixture</button>
+                    {Fixture && <Fixtures games={Fixture}/>}
+                </>
+                    : 
+                null}
             </div>
         </React.Fragment>
     )

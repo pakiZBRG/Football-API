@@ -254,6 +254,39 @@ body{
 .profit{color: #168118}
 .deficit{color: crimson}
 
+.fixture-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.fixture-flex-shadow{
+    width: 60%;
+    margin: auto;
+    box-shadow: 0 0 4px #000;
+}
+
+.flex-away, .flex-home{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 0.7rem;
+}
+
+.flex-score{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.winner{
+    text-align: center;
+    color: #429bb8;
+}
+
 @media(max-width: 1400px){
     .league-row, .squad-grid{
         grid-template-columns: 1fr 1fr 1fr;
@@ -263,6 +296,12 @@ body{
 @media(max-width: 1040px){
     .league-row, .squad-grid{
         grid-template-columns: 1fr 1fr;
+    }
+
+    .fixture-flex-shadow{
+        width: 90%;
+        margin: auto;
+        box-shadow: 0 0 4px #000;
     }
 }
 
@@ -277,4 +316,6 @@ body{
     .league-row, .squad-grid{
         grid-template-columns: 1fr;
     }
+
+    .fixture-flex-shadow{width: 100%;}
 }

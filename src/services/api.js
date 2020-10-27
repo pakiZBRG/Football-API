@@ -25,6 +25,8 @@ const coachUrl = `${baseUrl}coachs/team`
 const playerUrl = `${baseUrl}players/player`
 //https://api-football-v1.p.rapidapi.com/v2/transfers/team/{team_id}
 const transferUrl = `${baseUrl}transfers/team`;
+//https://api-football-v1.p.rapidapi.com/v2/fixtures/league/{league_id}
+const fixtureUrl = `${baseUrl}fixtures/league`
 
 
 // 40 picked leagues to show
@@ -232,6 +234,24 @@ export const getTransfer = team_id => {
     const options = {
         method: 'GET',
         url: `${transferUrl}/${team_id}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const leagues = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return leagues;
+}
+
+export const getFixtures = league_id => {
+    const options = {
+        method: 'GET',
+        url: `${fixtureUrl}/${league_id}`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`
