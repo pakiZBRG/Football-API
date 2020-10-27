@@ -37,8 +37,6 @@ export default function Teams(props) {
         getFixtures(leagueId).then(({api}) => setFixture(api.fixtures));
     }
 
-    console.log(Fixture)
-
     return (
         <React.Fragment>
             <h2 className='center' style={{marginTop: '2rem'}}>

@@ -10,11 +10,11 @@ export default function Team({team, leagueId}) {
     const missingImages = () => {
         switch(team_id){
             case 4264:
-                return <img src={salmrohr} alt={name}/>
+                return <img src={salmrohr} alt={name} height='145px'/>
             case 10137:
-                return <img src={nouva_cosenza} alt={name}/>
+                return <img src={nouva_cosenza} alt={name} height='145px'/>
             default: 
-                return <img src={logo} alt={name}/>
+                return <img src={logo} alt={name} height='145px'/>
         }
     }
 
@@ -24,7 +24,7 @@ export default function Team({team, leagueId}) {
                 {missingImages()}
             </div>
             <div className='single-league-text'>
-                <h2>{name}</h2>
+                <h3>{name}</h3>
                 <p>{venue_city}</p>
             </div>
         </Link>

@@ -22,7 +22,7 @@ body{
 
 .league-row{
     display: inline-grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
 }
 
@@ -263,7 +263,7 @@ body{
 
 .fixture-flex-shadow{
     width: 60%;
-    margin: auto;
+    margin: 1rem auto;
     box-shadow: 0 0 4px #000;
 }
 
