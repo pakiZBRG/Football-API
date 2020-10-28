@@ -5,6 +5,7 @@ import Leagues from './components/Leagues';
 import Teams from './components/Teams';
 import TeamStatistics from './components/TeamStatistics';
 import PlayerInfo from './components/PlayerInfo';
+import SingleFixture from './components/SingleFixture';
 
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
       <Route path='/league/:name/:leagueId' component={Teams}/>
       <Route path='/statistic/squad/:leagueId/:teamId' component={TeamStatistics}/>
       <Route path='/player/:name/:playerId' component={PlayerInfo}/>
+      <Route path='/fixture/:fixtureId' component={SingleFixture}/>
     </Router>
   );
 }

@@ -53,6 +53,15 @@ export default function Teams(props) {
                     )}
                 </select>
             </h2>
+
+            {LeaguesBySeason[0] && LeaguesBySeason[0].type === 'Cup' 
+                ? 
+            <>
+                <button onClick={getFixture}>Get Fixture</button>
+                {Fixture && <Fixtures games={Fixture}/>}
+            </>
+                : 
+            null}
             
             {Tables[0] && 
                 <>
@@ -64,16 +73,6 @@ export default function Teams(props) {
                 <div className='league-row'>
                     {Teams && Teams.map((team, i) => <Team team={team} key={i} leagueId={leagueId}/>)}
                 </div>
-            </div>
-            <div>
-                {LeaguesBySeason[0] && LeaguesBySeason[0].type === 'Cup' 
-                    ? 
-                <>
-                    <button onClick={getFixture}>Get Fixture</button>
-                    {Fixture && <Fixtures games={Fixture}/>}
-                </>
-                    : 
-                null}
             </div>
         </React.Fragment>
     )

@@ -11,6 +11,8 @@ body{
     overflow-x: hidden;
 }
 
+.top{margin-top: 0.8rem}
+
 .league-flex{
     width: 80%;
     margin: 0 auto;
@@ -259,12 +261,24 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    color: #000;
 }
 
 .fixture-flex-shadow{
     width: 60%;
     margin: 1rem auto;
     box-shadow: 0 0 4px #000;
+    position: relative;
+}
+
+.round {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    font-size: 5rem;
+    color: rgb(241, 241, 241);
+    mix-blend-mode: multiply;
 }
 
 .flex-away, .flex-home{
@@ -273,6 +287,7 @@ body{
     flex-direction: column;
     align-items: center;
     margin-top: 0.7rem;
+    color: #000;
 }
 
 .flex-score{
@@ -285,6 +300,47 @@ body{
 .winner{
     text-align: center;
     color: #429bb8;
+}
+
+.table-fixture-info{
+    width: 61%;
+    margin: 1.5rem auto;
+}
+
+.table-fixture-info tr td{
+    text-align: center;
+}
+
+.fixture-events{
+    width: 50%;
+    position: relative;
+}
+
+.red{
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    margin: 1.5rem auto;
+}
+
+.black{
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    margin: 1.5rem auto;
+}
+
+.centered{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.5rem;
+}
+
+.assist{
+    color: gray;
+    font-size: 1rem;
 }
 
 @media(max-width: 1400px){
