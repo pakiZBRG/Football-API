@@ -320,14 +320,20 @@ body{
     display: flex;
     align-items: flex-start;
     flex-direction: column;
-    margin: 1.5rem auto;
+    justify-content: center;
+    margin: 0 auto;
+    height: 90px;
+    border-top: 2px solid rgb(226, 226, 226);
 }
 
 .black{
     display: flex;
     align-items: flex-end;
     flex-direction: column;
-    margin: 1.5rem auto;
+    justify-content: center;
+    margin: 0 auto;
+    height: 90px;
+    border-top: 2px solid rgb(226, 226, 226);
 }
 
 .centered{
@@ -335,7 +341,8 @@ body{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    font-size: 1.5rem;
+    font-size: 1.7rem;
+    color: rgb(90, 90, 90);
 }
 
 .assist{

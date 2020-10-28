@@ -1,4 +1,17 @@
 import React, {useState, useEffect} from 'react';
+import dfl from '../images/dfl.png';
+import supercoppa from '../images/supercoppa.png';
+import copa_del_rey from '../images/copa_del_rey.png';
+import portugal from '../images/portugal.png';
+import taca_da_liga from '../images/taca_da_liga.png';
+import knvb from '../images/knvb.png';
+import russia from '../images/russia.png';
+import argentina from '../images/argentina.png';
+import scotland from '../images/scotland.png';
+import belgium from '../images/belgium.png';
+import subsist from '../images/subsist.png';
+import yellow from '../images/yellow.png';
+import red from '../images/red.png';
 import {getSingleFixture} from '../services/api'
 
 
@@ -10,15 +23,52 @@ export default function SingleFunction(props){
         getSingleFixture(fixtureId).then(({api}) => setFixture(api.fixtures[0]));
     }, [fixtureId]);
 
+    const missingImages = () => {
+        switch(league_id){
+            case 1564:
+                return <img src={dfl} alt={league.name}/>
+            case 1601:
+                return <img src={supercoppa} alt={league.name}/>
+            case 973:
+                return <img src={copa_del_rey} alt={league.name}/>
+            case 1608:
+                return <img src={portugal} alt={league.name}/>
+            case 949:
+                return <img src={taca_da_liga} alt={league.name}/>
+            case 1591:
+                return <img src={knvb} alt={league.name}/>
+            case 947:
+                return <img src={russia} alt={league.name}/>
+            case 321:
+                return <img src={argentina} alt={league.name}/>
+            case 1524:
+                return <img src={belgium} alt={league.name}/>
+            case 1232:
+                return <img src={scotland} alt={league.name}/>
+            default: 
+                return <img src={league.logo} alt={league.name}/>
+        }
+    }
+
+    const renderStatistics = string => (
+        <tr>
+            {statistics && <>
+                <td>{statistics[string].home !== null ? statistics[string].home : '-'}</td>
+                <td>{string}</td>
+                <td>{statistics[string].away !== null ? statistics[string].away : '-'}</td>
+            </>}
+        </tr>
+    )
+
     console.log(Fixture);
-    const { awayTeam, homeTeam, event_date, round, events, league, lineups, players, referee, score, statistics, venue } = Fixture;
+    const { league_id, awayTeam, homeTeam, event_date, round, events, league, lineups, referee, score, statistics, venue } = Fixture;
 
     return(
         <div>
             {Fixture.elapsed &&
             <>
                 <div className='flex-score'>
-                    <img src={league.logo} alt={league.name}/>
+                    {missingImages()}
                     <h2 className='top'>{league.name}</h2>
                     <h3>{round}</h3>
                 </div>
@@ -37,79 +87,41 @@ export default function SingleFunction(props){
                     </div>
                 </div>
                 <table className='table-fixture-info'>    
-                    <tbody>    
-                        <tr>
-                            <td>{statistics["Ball Possession"].home}</td>
-                            <td>Ball Possesion</td>
-                            <td>{statistics["Ball Possession"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Total passes"].home}</td>
-                            <td>Total passes</td>
-                            <td>{statistics["Total passes"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Passes %"].home}</td>
-                            <td>Passes %</td>
-                            <td>{statistics["Passes %"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Corner Kicks"].home}</td>
-                            <td>Corner Kicks</td>
-                            <td>{statistics["Corner Kicks"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Offsides"].home}</td>
-                            <td>Offsides</td>
-                            <td>{statistics["Offsides"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Total Shots"].home}</td>
-                            <td>Total Shots</td>
-                            <td>{statistics["Total Shots"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Shots on Goal"].home}</td>
-                            <td>Shots on Goal</td>
-                            <td>{statistics["Shots on Goal"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Goalkeeper Saves"].home}</td>
-                            <td>Goalkeeper Saves</td>
-                            <td>{statistics["Goalkeeper Saves"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Fouls"].home}</td>
-                            <td>Fouls</td>
-                            <td>{statistics["Fouls"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Yellow Cards"].home}</td>
-                            <td>Yellow Cards</td>
-                            <td>{statistics["Yellow Cards"].away}</td>
-                        </tr>
-                        <tr>
-                            <td>{statistics["Red Cards"].home === null ? 0 : statistics["Red Cards"].home}</td>
-                            <td>Red Cards</td>
-                            <td>{statistics["Red Cards"].away === null ? 0 : statistics["Red Cards"].away}</td>
-                        </tr>
+                    <tbody>  
+                        {renderStatistics("Ball Possession")}  
+                        {renderStatistics("Total passes")}
+                        {renderStatistics("Passes %")}
+                        {renderStatistics("Corner Kicks")}
+                        {renderStatistics("Offsides")}
+                        {renderStatistics("Total Shots")}
+                        {renderStatistics("Shots on Goal")}
+                        {renderStatistics("Goalkeeper Saves")}
+                        {renderStatistics("Yellow Cards")}
+                        {renderStatistics("Red Cards")}
                     </tbody>  
                 </table> 
+
+                {referee && <h3 className='center'>Referee: {referee.split(',')[0]}</h3>}
+                {venue && <h3 className='center'>Stadium: {venue}</h3>}
+                <h3 className='center'>{`${event_date.substr(0,10).split('-')[2]}/${event_date.substr(0,10).split('-')[1]}/${event_date.substr(0,10).split('-')[0]}`}</h3>
 
                 {events.map((event, i) => {
                     const {elapsed, type, player, assist, detail, teamName} = event;
                     return (
                         <div key={i} className={`${teamName === homeTeam.team_name ? 'red' : 'black'} fixture-events`}>
-                            <p className='centered'>{elapsed}</p>
-                            <h4>{type === 'Goal' ? <i className='fa fa-futbol'></i> : null} {player}</h4>
-                            <p className='assist'>{assist}</p>
-                            <p>{type === 'Card' || type === 'subst' ? type : null}</p>
-                            <p>{detail === 'Normal Goal' ? null : detail}</p>
+                            <p className='centered'>{elapsed > 45 ? `${elapsed}''` : `${elapsed}'`}</p>
+                            {player && <h4>{type === 'Goal' && <i className='fa fa-futbol'></i>} {type === 'subst' ? <span style={{color: 'crimson'}}>{player}</span> : player}</h4>}
+                            <p className='assist'>{type === 'Goal' && assist}</p>
+                            <p>{type === 'subst' && <img src={subsist} alt='subsist' height='30px'/>}</p>
+                            <p>{detail === 'Normal Goal' || detail.includes('Card') ? null : <span style={{color: 'green'}}>{detail}</span>}</p>
+                            <p>{detail === 'Yellow Card' && <img src={yellow} alt='yellow' height='30px'/>}</p>
+                            <p>{detail === 'Red Card' && <img src={red} alt='red' height='30px'/>}</p>
                         </div>
                     )
                 })}
 
-
+                <div className='fixture-flex'>
+                <div className='flex-score'>
                 Coach: <h3>{lineups[Object.keys(lineups)[1]].coach}</h3>
                 Formation: <h3>{lineups[Object.keys(lineups)[1]].formation}</h3>
                 <table>
@@ -122,7 +134,6 @@ export default function SingleFunction(props){
                         <tr>
                             <td>#</td>
                             <td>Name</td>
-                            <td>Extra</td>
                         </tr>
                     </thead>
                     <tbody>
@@ -153,8 +164,9 @@ export default function SingleFunction(props){
                         ))}
                     </tbody>
                 </table>
+                </div>
 
-
+                <div>
                 Coach: <h3>{lineups[Object.keys(lineups)[0]].coach}</h3>
                 Formation: <h3>{lineups[Object.keys(lineups)[0]].formation}</h3>
                 <table>
@@ -197,6 +209,8 @@ export default function SingleFunction(props){
                         ))}
                     </tbody>
                 </table>
+                </div>
+                </div>
             </>}
         </div>
     )
