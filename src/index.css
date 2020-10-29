@@ -231,7 +231,7 @@ body{
     position: absolute;
     top: 0;
     left: 0;
-    font-size: 3.5rem;
+    font-size: 3rem;
 }
 
 .team-grid{
@@ -262,6 +262,7 @@ body{
     justify-content: space-evenly;
     align-items: center;
     color: #000;
+    margin-top: 3rem;
 }
 
 .fixture-flex-shadow{
@@ -304,17 +305,22 @@ body{
 
 .table-fixture-info{
     width: 61%;
-    margin: 1.5rem auto;
+    margin: 2rem auto;
+    border-collapse: collapse;
 }
 
 .table-fixture-info tr td{
     text-align: center;
+    padding: 0.4rem 0;
+    border-bottom: 1px solid rgb(190, 190, 190);
 }
 
 .fixture-events{
-    width: 50%;
+    width: 55%;
     position: relative;
 }
+
+.fixture-events * {font-size: 1.15rem}
 
 .red{
     display: flex;
@@ -322,6 +328,7 @@ body{
     flex-direction: column;
     justify-content: center;
     margin: 0 auto;
+    padding-left: 3rem;
     height: 90px;
     border-top: 2px solid rgb(226, 226, 226);
 }
@@ -331,7 +338,8 @@ body{
     align-items: flex-end;
     flex-direction: column;
     justify-content: center;
-    margin: 0 auto;
+    margin: 0 auto; 
+    padding-right: 3rem;
     height: 90px;
     border-top: 2px solid rgb(226, 226, 226);
 }
@@ -347,6 +355,60 @@ body{
 
 .assist{
     color: gray;
+    font-size: 1rem;
+}
+
+.table-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    margin-top: 4rem;
+}
+
+.table-fixture{
+    min-width: 500px;
+    border-collapse: collapse;
+    margin: 1rem;
+}
+
+.table-fixture thead tr td {
+    font-size: 1.5rem;
+    padding: 0.4rem;
+    color: #fff;
+    font-weight: bold;
+    background: gray;
+}
+
+.table-fixture tbody tr td{
+    padding: 0.6rem;
+    border-top: 1px solid gray;
+}
+
+.table-fixture tbody tr td:first-child{
+    color: gray;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.table-fixture tbody tr td:last-child{
+    font-size: 1.3rem;
+}
+
+.table-team{
+    display: flex;
+    align-items: center;
+    margin-left: 2rem;
+}
+
+.table-team-name{
+    display: flex;
+    flex-direction: column;
+    margin-left: 1rem;
+}
+
+.table-team-name span:last-child{
+    color: #333;
     font-size: 1rem;
 }
 

@@ -53,9 +53,9 @@ export default function SingleFunction(props){
     const renderStatistics = string => (
         <tr>
             {statistics && <>
-                <td>{statistics[string].home !== null ? statistics[string].home : '-'}</td>
-                <td>{string}</td>
-                <td>{statistics[string].away !== null ? statistics[string].away : '-'}</td>
+                <td style={{fontSize: '1.2rem'}}>{statistics[string].home !== null ? statistics[string].home : '-'}</td>
+                <td><h3>{string}</h3></td>
+                <td style={{fontSize: '1.2rem'}}>{statistics[string].away !== null ? statistics[string].away : '-'}</td>
             </>}
         </tr>
     )
@@ -65,12 +65,17 @@ export default function SingleFunction(props){
 
     return(
         <div>
-            {Fixture.elapsed &&
+            {Fixture.elapsed ?
             <>
                 <div className='flex-score'>
                     {missingImages()}
                     <h2 className='top'>{league.name}</h2>
                     <h3>{round}</h3>
+                </div>
+                <div>
+                    {referee && <p className='center'>Referee: {referee.split(',')[0]}</p>}
+                    {venue && <p className='center'>Stadium: {venue}</p>}
+                    <p className='center'>{`${event_date.substr(0,10).split('-')[2]}/${event_date.substr(0,10).split('-')[1]}/${event_date.substr(0,10).split('-')[0]}`}</p>
                 </div>
                 <div className='fixture-flex'>
                     <div className='flex-score'>
@@ -79,7 +84,9 @@ export default function SingleFunction(props){
                     </div>
                     <div className='flex-score'>
                         <h1>{score.fulltime}</h1>
-                        <h2>{score.halftime}</h2>
+                        <h2>({score.halftime})</h2>
+                        {score.extratime && <h3>ET: {score.extratime}</h3>}
+                        {score.penalty && <h3>PK: {score.penalty}</h3>}
                     </div>
                     <div className='flex-score'>
                         <img src={awayTeam.logo} alt={awayTeam.team_name}/>
@@ -101,10 +108,7 @@ export default function SingleFunction(props){
                     </tbody>  
                 </table> 
 
-                {referee && <h3 className='center'>Referee: {referee.split(',')[0]}</h3>}
-                {venue && <h3 className='center'>Stadium: {venue}</h3>}
-                <h3 className='center'>{`${event_date.substr(0,10).split('-')[2]}/${event_date.substr(0,10).split('-')[1]}/${event_date.substr(0,10).split('-')[0]}`}</h3>
-
+                <h1 className='center' style={{marginBottom: '2rem'}}>Timeline</h1>
                 {events.map((event, i) => {
                     const {elapsed, type, player, assist, detail, teamName} = event;
                     return (
@@ -114,104 +118,110 @@ export default function SingleFunction(props){
                             <p className='assist'>{type === 'Goal' && assist}</p>
                             <p>{type === 'subst' && <img src={subsist} alt='subsist' height='30px'/>}</p>
                             <p>{detail === 'Normal Goal' || detail.includes('Card') ? null : <span style={{color: 'green'}}>{detail}</span>}</p>
-                            <p>{detail === 'Yellow Card' && <img src={yellow} alt='yellow' height='30px'/>}</p>
-                            <p>{detail === 'Red Card' && <img src={red} alt='red' height='30px'/>}</p>
+                            {detail === 'Yellow Card' && <img src={yellow} alt='yellow' height='30px'/>}
+                            {detail === 'Red Card' && <img src={red} alt='red' height='30px'/>}
                         </div>
                     )
                 })}
 
-                <div className='fixture-flex'>
-                <div className='flex-score'>
-                Coach: <h3>{lineups[Object.keys(lineups)[1]].coach}</h3>
-                Formation: <h3>{lineups[Object.keys(lineups)[1]].formation}</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Starting Lineup</td>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {lineups[Object.keys(lineups)[1]].startXI.map((player, i) => (
-                            <tr key={i}>
-                                <td>{player.number}</td>
-                                <td>{player.player}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <td>Substitutions</td>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {lineups[Object.keys(lineups)[1]].substitutes.map((player, i) => (
-                            <tr key={i}>
-                                <td>{player.number}</td>
-                                <td>{player.player}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-                </div>
+                {console.log(lineups)}
 
-                <div>
-                Coach: <h3>{lineups[Object.keys(lineups)[0]].coach}</h3>
-                Formation: <h3>{lineups[Object.keys(lineups)[0]].formation}</h3>
-                <table>
-                    <thead>
-                        <tr>
-                            <td>Starting Lineup</td>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {lineups[Object.keys(lineups)[0]].startXI.map((player, i) => (
-                            <tr key={i}>
-                                <td>{player.number}</td>
-                                <td>{player.player}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                    <thead>
-                        <tr>
-                            <td>Substitutions</td>
-                        </tr>
-                    </thead>
-                    <thead>
-                        <tr>
-                            <td>#</td>
-                            <td>Name</td>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        {lineups[Object.keys(lineups)[0]].substitutes.map((player, i) => (
-                            <tr key={i}>
-                                <td>{player.number}</td>
-                                <td>{player.player}</td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
+                <div className='table-flex'>
+                    {lineups &&
+                    <div>
+                        <h3 className='table-team'>
+                            <img src={homeTeam.logo} alt={homeTeam.team_name} height='55px'/> 
+                            <span className='table-team-name'>
+                                <span>{homeTeam.team_name}</span>
+                                <span>{[Object.keys(lineups)[0]].formation}</span>
+                            </span>
+                        </h3>
+                        <table className='table-fixture'>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Coach</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td></td><td>{lineups[Object.keys(lineups)[0]].coach}</td></tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Starting Lineup</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lineups[Object.keys(lineups)[0]].startXI.map((player, i) => (
+                                    <tr key={i}>
+                                        <td>{player.number}</td>
+                                        <td>{player.player}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Substitutions</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lineups[Object.keys(lineups)[0]].substitutes.map((player, i) => (
+                                    <tr key={i}>
+                                        <td>{player.number}</td>
+                                        <td>{player.player}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>}
+
+                    {lineups && 
+                    <div>
+                        <h3 className='table-team'>
+                            <img src={awayTeam.logo} alt={awayTeam.team_name} height='55px'/> 
+                            <span className='table-team-name'>
+                                <span>{awayTeam.team_name}</span>
+                                <span>{lineups[Object.keys(lineups)[1]].formation}</span>
+                            </span>
+                        </h3>
+                        <table className='table-fixture'>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Coach</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr><td></td><td>{lineups[Object.keys(lineups)[1]].coach}</td></tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Starting Lineup</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lineups[Object.keys(lineups)[1]].startXI.map((player, i) => (
+                                    <tr key={i}>
+                                        <td>{player.number}</td>
+                                        <td>{player.player}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <td colSpan='2'>Substitutions</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {lineups[Object.keys(lineups)[1]].substitutes.map((player, i) => (
+                                    <tr key={i}>
+                                        <td>{player.number}</td>
+                                        <td>{player.player}</td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>}
                 </div>
-                </div>
-            </>}
+            </> : <p>Loading</p>}
         </div>
     )
 }

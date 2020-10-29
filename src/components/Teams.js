@@ -14,7 +14,7 @@ export default function Teams(props) {
     const [ TopScorer, setTopScorer] = useState([]);
     const [ LeaguesBySeason, setLeaguesBySeason ] = useState([]);
     const [ TableBySeason, setTableBySeason ] = useState([]);
-    const [ Year, setYear ] = useState(2019);
+    const [ Year, setYear ] = useState(2020);
     const [ Fixture, setFixture ] = useState([]);
 
     useEffect(() => {
@@ -36,6 +36,8 @@ export default function Teams(props) {
     const getFixture = () => {
         getFixtures(leagueId).then(({api}) => setFixture(api.fixtures));
     }
+
+    console.log(Fixture)
 
     return (
         <React.Fragment>

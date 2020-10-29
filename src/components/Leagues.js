@@ -1,22 +1,22 @@
 import React, {useEffect, useState} from 'react';
 import League from './League';
-import { getLeagues, leagueIds } from '../services/api';
+import { getCurrentSeasons, leagueIds, getSearchByCountry } from '../services/api';
 
 
 export default function Leagues() {
-    const [AllLeagues, setAllLeagues] = useState([]);
     const leagues = [];
+    const [CurrentLeagues, setCurrentLeagues] = useState([]);
+    const [Search, setSearch] = useState([]);
 
     useEffect(() => {
-        // Get all leagues ~3000
-        getLeagues().then(({api: {leagues}}) => setAllLeagues(leagues));
+        getCurrentSeasons().then(({api: {leagues}}) => setCurrentLeagues(leagues));
+        getSearchByCountry('Croatia').then(({api}) => setSearch(api.leagues));
     }, []);
 
-    // Filter only leagues in season 2020/2021 ~550
-    const seasone20 = AllLeagues.filter(league => league.season === 2019);
+    console.log(Search)
 
     leagueIds.map(id => {
-        seasone20.find(league => {
+        CurrentLeagues.find(league => {
             if(league.league_id === id) 
                 leagues.push(league)
             return null;
@@ -27,7 +27,8 @@ export default function Leagues() {
     return (
         <div className='league-flex'>
             <div className='league-row'>
-                {leagues.map((league, i) => <League league={league} key={i}/>)}
+            {Search ? Search.map((search, i) => <League key={i} league={search}/>) : <p>Loading</p>}
+                {leagues[0] ? leagues.map((league, i) => <League league={league} key={i}/>) : <p>Loading</p>}
             </div>
         </div>
     )
