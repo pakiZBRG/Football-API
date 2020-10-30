@@ -66,8 +66,8 @@ export default function SingleFunction(props){
     return(
         <div>
             {Fixture.elapsed ?
-            <>
-                <div className='flex-score'>
+            <div className='single-width'>
+                <div className='single-fixture'>
                     {missingImages()}
                     <h2 className='top'>{league.name}</h2>
                     <h3>{round}</h3>
@@ -78,17 +78,17 @@ export default function SingleFunction(props){
                     <p className='center'>{`${event_date.substr(0,10).split('-')[2]}/${event_date.substr(0,10).split('-')[1]}/${event_date.substr(0,10).split('-')[0]}`}</p>
                 </div>
                 <div className='fixture-flex'>
-                    <div className='flex-score'>
+                    <div className='single-fixture'>
                         <img src={homeTeam.logo} alt={homeTeam.team_name}/>
                         <h2 className='top'>{homeTeam.team_name}</h2>
                     </div>
-                    <div className='flex-score'>
+                    <div className='single-fixture'>
                         <h1>{score.fulltime}</h1>
                         <h2>({score.halftime})</h2>
                         {score.extratime && <h3>ET: {score.extratime}</h3>}
                         {score.penalty && <h3>PK: {score.penalty}</h3>}
                     </div>
-                    <div className='flex-score'>
+                    <div className='single-fixture'>
                         <img src={awayTeam.logo} alt={awayTeam.team_name}/>
                         <h2 className='top'>{awayTeam.team_name}</h2>
                     </div>
@@ -221,7 +221,7 @@ export default function SingleFunction(props){
                         </table>
                     </div>}
                 </div>
-            </> : <p>Loading</p>}
+            </div> : <p>Loading</p>}
         </div>
     )
 }

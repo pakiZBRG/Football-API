@@ -61,7 +61,7 @@ export default function League({league}) {
             </div>
             <div className='single-league-text'>
                 <h2>{name}</h2>
-                <p>{flag !== null ? <img src={flag} alt={country}/> : null}</p>
+                <p>{flag !== null && <img src={flag} alt={country}/>}</p>
             </div>
         </Link>
     )
