@@ -263,6 +263,7 @@ body{
     box-shadow: 0px 0px 3px #000;
     margin: 1rem;
     padding: 1rem 0;
+    background: #fff;
 }
 
 .team-flex h1 {margin-bottom: 0.6rem}
@@ -358,6 +359,7 @@ body{
 .winner{
     text-align: center;
     color: #429bb8;
+    font-weight: bold;
 }
 
 .divider{
@@ -474,6 +476,40 @@ body{
 .table-team-name span:last-child{
     color: #333;
     font-size: 1rem;
+}
+
+/* HeadToHead */
+.h2h-width{
+    width: 85%;
+    margin: 0 auto;
+    background: #fff;
+}
+
+.h2h-league-time{
+    background: rgb(230, 230, 230);
+    color: gray;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+    padding: 0.6rem 0;
+}
+
+.h2h-flex{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.h2h-flex div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: .6rem 0;
+}
+
+.h2h-flex div img{height: 50px;}
+.h2h-flex div p {
+    margin: 0 1rem;
+    font-size: 1.3rem;
 }
 
 @media(max-width: 1600px){

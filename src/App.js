@@ -6,6 +6,7 @@ import Teams from './components/Teams';
 import TeamStatistics from './components/TeamStatistics';
 import PlayerInfo from './components/PlayerInfo';
 import SingleFixture from './components/SingleFixture';
+import HeadToHead from './components/HeadToHead';
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
       <Route path='/statistic/squad/:leagueId/:teamId' component={TeamStatistics}/>
       <Route path='/player/:name/:playerId' component={PlayerInfo}/>
       <Route path='/fixture/:fixtureId' component={SingleFixture}/>
+      <Route path='/h2h/:teamId1/:teamId2' component={HeadToHead}/>
     </Router>
   );
 }

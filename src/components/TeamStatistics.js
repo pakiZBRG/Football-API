@@ -17,12 +17,10 @@ export default function TeamStatistics(props) {
     useEffect(() => {
         getSquadStaticstics(leagueId, teamId).then(({api}) => setInfo(api.statistics));
         getTeamData(teamId).then(({api}) => setTeamData(api.teams[0]));
-        getSquad(teamId, "2019").then(({api}) => setSquad(api.players));
+        getSquad(teamId, "2020").then(({api}) => setSquad(api.players));
         getCoach(teamId).then(({api}) => setCoach(api.coachs[0]));
         getTransfer(teamId).then(({api}) => setTransfer(api.transfers));
     }, [leagueId, teamId]);
-
-    console.log(Transfer);
 
     const {logo, country, name, founded, venue_city, venue_name, venue_capacity} = TeamData
 

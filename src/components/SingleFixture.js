@@ -12,7 +12,8 @@ import belgium from '../images/belgium.png';
 import subsist from '../images/subsist.png';
 import yellow from '../images/yellow.png';
 import red from '../images/red.png';
-import {getSingleFixture} from '../services/api'
+import {getSingleFixture} from '../services/api';
+import {Link} from 'react-router-dom';
 
 
 export default function SingleFunction(props){
@@ -60,7 +61,6 @@ export default function SingleFunction(props){
         </tr>
     )
 
-    console.log(Fixture);
     const { league_id, awayTeam, homeTeam, event_date, round, events, league, lineups, referee, score, statistics, venue } = Fixture;
 
     return(
@@ -93,9 +93,12 @@ export default function SingleFunction(props){
                         <h2 className='top'>{awayTeam.team_name}</h2>
                     </div>
                 </div>
-                <table className='table-fixture-info'>    
+                <Link to={`/h2h/${homeTeam.team_id}/${awayTeam.team_id}`}>
+                    <h2>Head To HEad Fixtures</h2>
+                </Link>
+                <table className='table-fixture-info'>
                     <tbody>  
-                        {renderStatistics("Ball Possession")}  
+                        {renderStatistics("Ball Possession")}
                         {renderStatistics("Total passes")}
                         {renderStatistics("Passes %")}
                         {renderStatistics("Corner Kicks")}
@@ -123,8 +126,6 @@ export default function SingleFunction(props){
                         </div>
                     )
                 })}
-
-                {console.log(lineups)}
 
                 <div className='table-flex'>
                     {lineups &&
