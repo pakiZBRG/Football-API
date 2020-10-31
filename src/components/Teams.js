@@ -21,12 +21,11 @@ export default function Teams(props) {
         getTopScorer(leagueId).then(({api}) => setTopScorer(api.topscorers))
     }, [leagueId]);
 
-
     const getFixture = () => getFixtures(leagueId).then(({api}) => setFixture(api.fixtures));
 
     return (
         <React.Fragment>
-            {Tables[0] && 
+            {Tables &&
                 <>
                     <UCLTable groups={Tables}/>
                     <Scorer scorers={TopScorer}/>

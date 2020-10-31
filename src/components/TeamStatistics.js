@@ -33,7 +33,12 @@ export default function TeamStatistics(props) {
                     <p><i className="fa fa-calendar"></i> {founded}</p>
                     <p><i className="fa fa-map-marker"></i> {country}, {venue_city}</p>
                     <p><i className="fa fa-futbol"></i> {venue_name} ({venue_capacity})</p>
-                    {Coach && <p><i className="fa fa-user"></i> {Coach.name} ({Coach.nationality})</p>}
+                    {Coach && 
+                    <>
+                        <p><i className="fa fa-user"></i> <strong>{Coach.name}</strong> ({Coach.nationality})</p>
+                        <p>From: {Coach.career && Coach.career[0].start}</p>
+                    </>
+                    }
                 </div>
             }
             {Info && <Overview info={Info}/>}

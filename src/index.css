@@ -51,6 +51,7 @@ body{
     text-align: center;
     margin-bottom: 0.7rem;
     transition: 400ms box-shadow;
+    color: #000;
 }
 
 .single-league:hover{
@@ -204,7 +205,6 @@ body{
 .Goalkeeper{
     background: #f9d342;
     color: #292826;
-    mix-blend-mode: screen;
 }
 
 .Defender{
@@ -235,10 +235,6 @@ body{
     width: 100%;
     height: 4px;
     background: gray;
-}
-
-.players-position .position:first-child{
-    margin-top: 3rem;
 }
 
 .background-lastname{
@@ -433,7 +429,7 @@ body{
 }
 
 .table-fixture{
-    min-width: 500px;
+    min-width: 360px;
     border-collapse: collapse;
     margin: 1rem;
 }
@@ -485,11 +481,24 @@ body{
     background: #fff;
 }
 
+.h2h-stats{
+    display: flex;
+    justify-content: space-around;
+    padding: 1.5rem 0;
+}
+
+.h2h-stats div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.h2h-single-fixture{color: #000;}
+
 .h2h-league-time{
     background: rgb(230, 230, 230);
     color: gray;
     border-top: 1px solid gray;
-    border-bottom: 1px solid gray;
     padding: 0.6rem 0;
 }
 
@@ -518,17 +527,14 @@ body{
 
 @media(max-width: 1400px){
     .league-row, .squad-grid{grid-template-columns: 1fr 1fr 1fr;}
-
     .teams-row {grid-template-columns: 1fr 1fr 1fr 1fr;}
-
+    .single-width {width: 90%}
     .fixture-grid {grid-template-columns: 1fr 1fr;}
 }
 
 @media(max-width: 1040px){
     .league-row, .squad-grid {grid-template-columns: 1fr 1fr;}
-
     .teams-row {grid-template-columns: 1fr 1fr 1fr;}
-
     .fixture-flex-shadow {box-shadow: 0 0 4px #000;}
 }
 
@@ -537,15 +543,30 @@ body{
         grid-template-columns: 1fr;
         width: 90%;
     }
-
+    .single-width {width: 100%}
+    .h2h-width {width: 100%;}
     .fixture-grid {grid-template-columns: 1fr;}
+}
+
+@media(max-width: 800px){
+    .fixture-events{width: 90%}
+    .table-flex {flex-direction: column;}
+    .table-league {width: 100%;}
 }
 
 @media(max-width: 710px){
     .league-flex {width: 95%;}
-
     .single-league {height: 250px;}
     .teams-row {grid-template-columns: 1fr 1fr;}
-
     .league-row, .squad-grid {grid-template-columns: 1fr;}
+    .table-fixture-info {width: 80%}
+    .single-fixture img {height: 80px; object-fit: contain;}
+    .single-fixture h2 {font-size: 1.1rem}
+}
+
+@media(max-width: 500px){
+    .centered {font-size: 1.1rem}
+    .black {padding-right: 1rem}
+    .red {padding-left: 1rem}
+    .fixture-events h4 {font-size: 1.1rem}
 }

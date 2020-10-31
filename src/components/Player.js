@@ -35,7 +35,7 @@ export default function Player({squad}){
     
     return (
         <>
-            {displayPlayers(Goalkeeper, "Goalkeeper", "screen")}
+            {displayPlayers(Goalkeeper, "Goalkeeper", "overlay")}
             {displayPlayers(Defender, "Defender", "multiply")}
             {displayPlayers(Midfielder, "Midfielder", "multiply")}
             {displayPlayers(Attacker, "Attacker", "multiply")}

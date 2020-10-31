@@ -17,30 +17,28 @@ export default function HeadToHead(props){
 
     return(
         <div className='h2h-width'>
-            {teams && 
+            <div className='h2h-stats'>
+                {teams &&
                 <div>
                     <img src={teams[0].team_logo} alt={teams[0].team_name}/>
-                    <h3>{teams[0].team_name}</h3>
+                    <h2 className='top'>{teams[0].team_name}</h2>
                     <div>
-                        <p>Wins: {teams[0].statistics.wins.total}</p>
+                        <p>Wins: {teams[0].statistics.wins.total > teams[1].statistics.wins.total ? <strong>{teams[0].statistics.wins.total}</strong> : teams[0].statistics.wins.total}</p>
                         <p>Draws: {teams[0].statistics.draws.total}</p>
-                        <p>Loses: {teams[0].statistics.loses.total}</p>
-                        <p>Played: {teams[0].statistics.played.total}</p>
+                        <p>Loses: {teams[0].statistics.loses.total > teams[1].statistics.loses.total ? <strong>{teams[0].statistics.loses.total}</strong> : teams[0].statistics.loses.total}</p>
                     </div>
-                </div>
-            }
-            {teams && 
+                </div>}
+                {teams &&
                 <div>
                     <img src={teams[1].team_logo} alt={teams[1].team_name}/>
-                    <h3>{teams[1].team_name}</h3>
+                    <h2 className='top'>{teams[1].team_name}</h2>
                     <div>
-                        <p>Wins: {teams[1].statistics.wins.total}</p>
-                        <p>Draws: {teams[1].statistics.draws.total}</p>
-                        <p>Loses: {teams[1].statistics.loses.total}</p>
-                        <p>Played: {teams[1].statistics.played.total}</p>
+                        <p>Wins: {teams[0].statistics.wins.total < teams[1].statistics.wins.total ? <strong>{teams[1].statistics.wins.total}</strong> : teams[1].statistics.wins.total}</p>
+                        <p>Draws: {teams[0].statistics.draws.total}</p>
+                        <p>Loses: {teams[0].statistics.loses.total < teams[1].statistics.loses.total ? <strong>{teams[1].statistics.loses.total}</strong> : teams[1].statistics.loses.total}</p>
                     </div>
-                </div>
-            }
+                </div>}
+            </div>
             
             {fixtures && fixtures.map((fixture, i) => {
                 const {fixture_id, awayTeam, event_date, league, homeTeam, score} = fixture;

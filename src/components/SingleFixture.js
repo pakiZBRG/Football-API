@@ -26,7 +26,7 @@ export default function SingleFunction(props){
 
     const missingImages = () => {
         switch(league_id){
-            case 1564:
+            case 2751:
                 return <img src={dfl} alt={league.name}/>
             case 1601:
                 return <img src={supercoppa} alt={league.name}/>
@@ -62,7 +62,6 @@ export default function SingleFunction(props){
     )
 
     const { league_id, awayTeam, homeTeam, event_date, round, events, league, lineups, referee, score, statistics, venue } = Fixture;
-
     return(
         <div>
             {Fixture.elapsed ?
@@ -93,8 +92,8 @@ export default function SingleFunction(props){
                         <h2 className='top'>{awayTeam.team_name}</h2>
                     </div>
                 </div>
-                <Link to={`/h2h/${homeTeam.team_id}/${awayTeam.team_id}`}>
-                    <h2>Head To HEad Fixtures</h2>
+                <Link to={`/h2h/${homeTeam.team_id}/${awayTeam.team_id}`} className='team-info' style={{margin: '1.5rem 0'}}>
+                    <button className='get-fixture'>Head To Head Fixtures</button>
                 </Link>
                 <table className='table-fixture-info'>
                     <tbody>  
@@ -112,7 +111,7 @@ export default function SingleFunction(props){
                 </table> 
 
                 <h1 className='center' style={{marginBottom: '2rem'}}>Timeline</h1>
-                {events.map((event, i) => {
+                {events && events.map((event, i) => {
                     const {elapsed, type, player, assist, detail, teamName} = event;
                     return (
                         <div key={i} className={`${teamName === homeTeam.team_name ? 'red' : 'black'} fixture-events`}>
