@@ -521,6 +521,16 @@ body{
     font-size: 1.3rem;
 }
 
+.loading{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2.5rem;
+    color: gray;
+    font-weight: bold;
+}
+
 @media(max-width: 1600px){
     .league-row {grid-template-columns: 1fr 1fr 1fr 1fr;}
 }

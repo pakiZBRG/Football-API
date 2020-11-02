@@ -221,7 +221,7 @@ export default function SingleFunction(props){
                         </table>
                     </div>}
                 </div>
-            </div> : <p>Loading</p>}
+            </div> : <p className='loading'>Loading fixture...</p>}
         </div>
     )
 }

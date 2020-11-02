@@ -17,10 +17,11 @@ export default function PlayerInfo(props){
     
     return(
         <>
-            {Player[0] && (
+            {Player[0] ? 
+            <div>
                 <div className='squad-flex'>
                     <h2 style={{marginTop: '.4rem'}}><i className="fa fa-user"></i> {Player[0].firstname} {Player[0].lastname}</h2>
-                    <h3 style={{marginTop: '.4rem'}}><i className="fa fa-map-marker"></i> {Player[0].birth_country} {Player[0].birth_place}</h3>
+                    <h3 style={{marginTop: '.4rem'}}><i className="fa fa-map-marker"></i> {Player[0].birth_country}, {Player[0].birth_place}</h3>
                     <h3 style={{marginTop: '.4rem'}}><i className="fa fa-calendar"></i> {Player[0].birth_date} ({Player[0].age})</h3>
                     <h3 style={{marginTop: '.4rem'}}>{Player[0].position}</h3>
                     <h3 style={{marginTop: '.4rem'}}>{Player[0].height}</h3>
@@ -29,10 +30,7 @@ export default function PlayerInfo(props){
                     <h3>Goals: <span style={{color: 'crimson'}}>{Player.map(player => totalGoals.push(player.goals.total)) && totalGoals.reduce((a, b) => a+b, 0)} </span><i className='fa fa-futbol'></i></h3>
                     <h3>Assists: <span style={{color: 'crimson'}}>{Player.map(player => totalAssists.push(player.goals.assists)) && totalAssists.reduce((a, b) => a+b, 0)}</span></h3>
                 </div>
-                )
-            }
-            <div>
-                <h2 className='center' style={{marginTop: '1rem'}}>Player Info</h2>
+                <h1 className='center' style={{marginTop: '2.5rem'}}>Player Info</h1>
                 <table className='table-league'>
                     <thead>
                         <tr>
@@ -73,7 +71,7 @@ export default function PlayerInfo(props){
                         )})}
                     </tbody>
                 </table>
-            </div>
+            </div> : <p className='loading'>Fetching player...</p>}
         </>
     )
 }

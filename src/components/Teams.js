@@ -47,7 +47,7 @@ export default function Teams(props) {
                 </>
             }
             
-            <h1 className='center' style={{margin: '2rem 0'}}>Teams</h1>
+            {Teams && <h1 className='center' style={{margin: '2rem 0'}}>Teams</h1>}
             <div className='league-flex'>
                 <div className='teams-row'>
                     {Teams && Teams.map((team, i) => <Team team={team} key={i} leagueId={leagueId}/>)}

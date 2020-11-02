@@ -23,7 +23,7 @@ export default function Leagues() {
     return (
         <div className='league-flex'>
             <div className='league-row'>
-                {leagues[0] ? leagues.map((league, i) => <League league={league} key={i}/>) : <p>Loading</p>}
+                {leagues[0] ? leagues.map((league, i) => <League league={league} key={i}/>) : <p className='loading'>Fetching leagues...</p>}
             </div>
         </div>
     )
