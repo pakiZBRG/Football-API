@@ -237,13 +237,6 @@ body{
     background: gray;
 }
 
-.background-lastname{
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 3rem;
-}
-
 .team-grid{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
@@ -294,6 +287,7 @@ body{
     width: 70%;
     margin: 0 auto;
     background: #fff;
+    box-shadow: 0px 0px 10px #000;
 }
 
 .single-fixture{
@@ -529,6 +523,22 @@ body{
     font-size: 2.5rem;
     color: gray;
     font-weight: bold;
+}
+
+.stats-flex{
+    margin: 2rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.form-wrap{
+    margin-top: 1rem;
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 @media(max-width: 1600px){

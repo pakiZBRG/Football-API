@@ -16,7 +16,7 @@ export default function Player({squad}){
     playersMidfielder();
     playersAttacker();
 
-    const displayPlayers = (pos, name, style) => (
+    const displayPlayers = (pos, name) => (
         <div className='players-position'>
             <h2 className='position'>{`${name}s`} ({pos.length})</h2>
             <div className='squad-grid'>
@@ -26,7 +26,6 @@ export default function Player({squad}){
                         <h3>{player.nationality}</h3>
                         <p>Age: {player.age}</p>
                         <p>{player.birth_date}</p>
-                        <p className='background-lastname' style={{mixBlendMode: style}}>{player.lastname}</p>
                     </Link>
                 ))}
             </div> 
@@ -35,10 +34,10 @@ export default function Player({squad}){
     
     return (
         <>
-            {displayPlayers(Goalkeeper, "Goalkeeper", "overlay")}
-            {displayPlayers(Defender, "Defender", "multiply")}
-            {displayPlayers(Midfielder, "Midfielder", "multiply")}
-            {displayPlayers(Attacker, "Attacker", "multiply")}
+            {displayPlayers(Goalkeeper, "Goalkeeper")}
+            {displayPlayers(Defender, "Defender")}
+            {displayPlayers(Midfielder, "Midfielder")}
+            {displayPlayers(Attacker, "Attacker")}
         </>
     )
 }

@@ -54,17 +54,37 @@ export default function FixturesByTeam(props) {
         return goals
     }
 
+    const matchForm = () => {
+        const form = [];
+        fixtureByTeam.map(fixture => {
+            if((fixture.awayTeam.team_name === name && fixture.goalsAwayTeam > fixture.goalsHomeTeam) || (fixture.homeTeam.team_name === name && fixture.goalsHomeTeam > fixture.goalsAwayTeam)){
+                form.push("W")
+            } else if(fixture.goalsAwayTeam === fixture.goalsHomeTeam){
+                form.push("D")
+            } else form.push("L")
+            return true;
+        })
+        return form.map((f, i) => (
+            f === 'W' ? <span key={i} className='table-group-form win'>{f}</span> :
+            f === 'D' ? <span key={i} className='table-group-form draw'>{f}</span> : 
+            <span key={i} className='table-group-form lost'>{f}</span>
+        ))
+    }
+
     const {logo, name} = teamData
     return (
         <React.Fragment>
             <h1 className='center top'>Last 50 Matches - {name}</h1>
-            <img src={logo} alt={name}/>
-            <h3>{name}</h3>
-            <h3>Wins: {wins()}</h3>
-            <h3>Draws: {draws()}</h3>
-            <h3>Lost: {50 - wins() - draws()}</h3>
-            <h3>Goals Given: {goalsGiven()} {(goalsGiven()/50).toFixed(2)}</h3>
-            <h3>Goals Received: {goalsReceived()} {(goalsReceived()/50).toFixed(2)}</h3>
+            <div className='stats-flex'>
+                <img src={logo} alt={name}/>
+                <h2 className='top'>{name}</h2>
+                <h3>Wins: {wins()}</h3>
+                <h3>Draws: {draws()}</h3>
+                <h3>Lost: {50 - wins() - draws()}</h3>
+                <h3>Goals Given: {goalsGiven()} {(goalsGiven()/50).toFixed(2)}</h3>
+                <h3>Goals Received: {goalsReceived()} {(goalsReceived()/50).toFixed(2)}</h3>
+                <div className='form-wrap'>{matchForm()}</div>
+            </div>
             <div className='fixture-grid'>
                 {fixtureByTeam && fixtureByTeam.map((fixture, i) => {
                     const {awayTeam, homeTeam, score, round, event_date, fixture_id} = fixture;

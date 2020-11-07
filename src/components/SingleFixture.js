@@ -78,7 +78,9 @@ export default function SingleFunction(props){
                 </div>
                 <div className='fixture-flex'>
                     <div className='single-fixture'>
-                        <img src={homeTeam.logo} alt={homeTeam.team_name}/>
+                        <Link to={`/statistic/squad/${league_id}/${homeTeam.team_id}`}>
+                            <img src={homeTeam.logo} alt={homeTeam.team_name}/>
+                        </Link>
                         <h2 className='top'>{homeTeam.team_name}</h2>
                     </div>
                     <div className='single-fixture'>
@@ -88,7 +90,9 @@ export default function SingleFunction(props){
                         {score.penalty && <h3>PK: {score.penalty}</h3>}
                     </div>
                     <div className='single-fixture'>
-                        <img src={awayTeam.logo} alt={awayTeam.team_name}/>
+                        <Link to={`/statistic/squad/${league_id}/${awayTeam.team_id}`}>
+                            <img src={awayTeam.logo} alt={awayTeam.team_name}/>
+                        </Link>
                         <h2 className='top'>{awayTeam.team_name}</h2>
                     </div>
                 </div>
