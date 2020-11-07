@@ -579,4 +579,6 @@ body{
     .black {padding-right: 1rem}
     .red {padding-left: 1rem}
     .fixture-events h4 {font-size: 1.1rem}
+    .h2h-flex div img{height: 40px;}
+    .h2h-flex div p {font-size: 0.9rem;}
 }

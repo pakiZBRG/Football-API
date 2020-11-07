@@ -1,21 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { getSquadStaticstics, getTeamData, getSquad, getCoach, getTransfer } from '../services/api';
+import { getTeamData, getSquad, getCoach, getTransfer } from '../services/api';
 import Player from './Player';
-import Overview from './Overview';
+import {Link} from 'react-router-dom';
 import TransferMarket from './Transfer';
 
 
 export default function TeamStatistics(props) {
     const teamId = props.match.params.teamId;
     const leagueId = props.match.params.leagueId;
-    const [Info, setInfo] = useState([]);
     const [TeamData, setTeamData] = useState([]);
     const [Coach, setCoach] = useState([]);
     const [Squad, setSquad] = useState([]);
     const [Transfer, setTransfer] = useState([]);
 
     useEffect(() => {
-        getSquadStaticstics(leagueId, teamId).then(({api}) => setInfo(api.statistics));
         getTeamData(teamId).then(({api}) => setTeamData(api.teams[0]));
         getSquad(teamId, "2020").then(({api}) => setSquad(api.players));
         getCoach(teamId).then(({api}) => setCoach(api.coachs[0]));
@@ -41,7 +39,11 @@ export default function TeamStatistics(props) {
                     }
                 </div>
             }
-            {Info && <Overview info={Info}/>}
+            <div className='team-info' style={{margin: '1rem 0 3rem 0'}}>
+                <button className='get-fixture'>
+                    <Link style={{color: '#fff'}} to={`/team/fixture/${teamId}`}>Last 50 Matches</Link>
+                </button>
+            </div>
             {Squad !== [] && <Player squad={Squad}/>}
             {Transfer && <TransferMarket transfer={Transfer} logo={logo} name={name}/>}
         </div>

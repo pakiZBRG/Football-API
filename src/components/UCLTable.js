@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
 export default function UCLTable({groups}) {
     return (
@@ -23,7 +24,7 @@ export default function UCLTable({groups}) {
                         </thead>
                         <tbody>
                             {group.map((team, i) => {
-                                const {description, teamName, rank, points, logo, all, goalsDiff, forme} = team;
+                                const {team_id, description, teamName, rank, points, logo, all, goalsDiff, forme} = team;
                                 const {win, draw, lose, goalsFor, goalsAgainst} = all;
                                 const promotion = type => description && !description.search(type) && 'promotion';
                                 const relegation = () => description && !description.search('Relegation') && 'relegation';
@@ -33,7 +34,12 @@ export default function UCLTable({groups}) {
                                         ${relegation() || promotion('CONMEBOL') || promotion('Championship') || promotion('8th') || promotion('16th') || promotion('UEFA') || promotion('Final Series') || promotion('Champion') || promotion('Promotion')}
                                     `}>
                                         <td className='center'><h3>{rank}.</h3></td>
-                                        <td className='table-group-teamname'><img src={logo} alt={teamName}/> <h4>{teamName}</h4></td>
+                                        <td className='table-group-teamname'>
+                                            <Link to={`/team/fixture/${team_id}`} style={{color: '#000'}} className='table-group-teamname'>
+                                                <img src={logo} alt={teamName}/> 
+                                                <h4>{teamName}</h4>
+                                            </Link>
+                                        </td>
                                         <td className='center'>{win + draw + lose}</td>
                                         <td className='center'>{win}</td>
                                         <td className='center'>{draw}</td>

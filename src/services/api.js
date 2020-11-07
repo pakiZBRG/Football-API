@@ -31,7 +31,9 @@ const singleFixtureUrl = `${baseUrl}fixtures/id`;
 //https://api-football-v1.p.rapidapi.com/v2/leagues/current/
 const currentSeasonsUrl = `${baseUrl}leagues/current`
 //https://api-football-v1.p.rapidapi.com/v2/fixtures/h2h/{team_id}/{team_id}
-const headToHeadUrl = `${baseUrl}fixtures/h2h`
+const headToHeadUrl = `${baseUrl}fixtures/h2h`;
+//https://api-football-v1.p.rapidapi.com/v2/fixtures/team/{team_id}
+const fixturesByTeamUrl = `${baseUrl}fixtures/team`
 
 
 export const leagueIds = [2790, 2794, 2725, 2791, 2755, 2743, 2677, 2751, 2833, 2847, 973, 1629, 2857, 2946, 2941, 1601, 2664, 2652, 783, 1237, 2673, 2749, 1591, 2660, 1524, 2826, 949, 2750, 2815, 2816, 1612, 2855, 2824, 2679, 2707, 2787, 1396, 1333, 2277, 3023, 1400, 1522, 2696, 2772, 2874, 3025, 2801, 2715, 1264, 1355, 2777, 2771, 2809]
@@ -292,6 +294,24 @@ export const getH2H = (team_id1, team_id2) => {
     const options = {
         method: 'GET',
         url: `${headToHeadUrl}/${team_id1}/${team_id2}`,
+        headers: {
+            'x-rapidapi-host': `${host}`,
+            'x-rapidapi-key': `${apiKey}`
+        }
+    };
+    
+    const leagues = axios
+        .request(options)
+        .then(({data}) => data)
+        .catch(error => console.log(error));
+
+    return leagues;
+}
+
+export const getFixturesByTeam = team_id => {
+    const options = {
+        method: 'GET',
+        url: `${fixturesByTeamUrl}/${team_id}/last/50`,
         headers: {
             'x-rapidapi-host': `${host}`,
             'x-rapidapi-key': `${apiKey}`

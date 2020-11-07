@@ -14,7 +14,6 @@ export default function PlayerInfo(props){
     }, [playerId]);
 
     Player.sort((a,b) => (a.season < b.season) ? 1 : ((b.season < a.season) ? -1 : 0));
-    
     return(
         <>
             {Player[0] ? 
