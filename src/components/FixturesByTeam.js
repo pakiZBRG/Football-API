@@ -78,11 +78,11 @@ export default function FixturesByTeam(props) {
             <div className='stats-flex'>
                 <img src={logo} alt={name}/>
                 <h2 className='top'>{name}</h2>
-                <h3>Wins: {wins()}</h3>
-                <h3>Draws: {draws()}</h3>
-                <h3>Lost: {50 - wins() - draws()}</h3>
-                <h3>Goals Given: {goalsGiven()} {(goalsGiven()/50).toFixed(2)}</h3>
-                <h3>Goals Received: {goalsReceived()} {(goalsReceived()/50).toFixed(2)}</h3>
+                <p>Wins: <strong>{wins()}</strong></p>
+                <p>Draws: <strong>{draws()}</strong></p>
+                <p>Lost: <strong>{50 - wins() - draws()}</strong></p>
+                <p>Goals Given: <strong>{goalsGiven()} {(goalsGiven()/50).toFixed(2)}</strong></p>
+                <p>Goals Received: <strong>{goalsReceived()} {(goalsReceived()/50).toFixed(2)}</strong></p>
                 <div className='form-wrap'>{matchForm()}</div>
             </div>
             <div className='fixture-grid'>
