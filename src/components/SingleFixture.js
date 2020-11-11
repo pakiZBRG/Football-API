@@ -62,9 +62,12 @@ export default function SingleFunction(props){
     )
 
     const { league_id, awayTeam, homeTeam, event_date, round, events, league, lineups, referee, score, statistics, venue } = Fixture;
+
+    console.log(Fixture)
+
     return(
         <div>
-            {Fixture.elapsed ?
+            {Fixture.event_date ?
             <div className='single-width'>
                 <div className='single-fixture'>
                     {missingImages()}
@@ -84,8 +87,8 @@ export default function SingleFunction(props){
                         <h2 className='top'>{homeTeam.team_name}</h2>
                     </div>
                     <div className='single-fixture'>
-                        <h1>{score.fulltime}</h1>
-                        <h2>({score.halftime})</h2>
+                        <h1>{score.fulltime ? score.fulltime : <p style={{fontSize: '1.5rem'}}>Not Played</p>}</h1>
+                        <h2>{score.halftime && `(${score.halftime})`}</h2>
                         {score.extratime && <h3>ET: {score.extratime}</h3>}
                         {score.penalty && <h3>PK: {score.penalty}</h3>}
                     </div>
@@ -114,7 +117,7 @@ export default function SingleFunction(props){
                     </tbody>  
                 </table> 
 
-                <h1 className='center' style={{marginBottom: '2rem'}}>Timeline</h1>
+                {events && <h1 className='center' style={{marginBottom: '2rem'}}>Timeline</h1>}
                 {events && events.map((event, i) => {
                     const {elapsed, type, player, assist, detail, teamName} = event;
                     return (

@@ -488,6 +488,7 @@ body{
     width: 85%;
     margin: 0 auto;
     background: #fff;
+    box-shadow: 0 0 7px #000;
 }
 
 .h2h-stats{
