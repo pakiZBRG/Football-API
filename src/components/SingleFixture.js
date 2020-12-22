@@ -63,8 +63,6 @@ export default function SingleFunction(props){
 
     const { league_id, awayTeam, homeTeam, event_date, round, events, league, lineups, referee, score, statistics, venue } = Fixture;
 
-    console.log(Fixture)
-
     return(
         <div>
             {Fixture.event_date ?

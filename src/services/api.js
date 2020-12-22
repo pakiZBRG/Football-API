@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiKey = 'f5f4167653mshb2633e377f5276fp160fe8jsne5c859e1da57';
+const apiKey = '944c90463dmsh3535da372e8a4e8p1b256djsn281073c86564';
 const host = 'api-football-v1.p.rapidapi.com'
 const baseUrl = 'https://api-football-v1.p.rapidapi.com/v2/';
 const singleLeagueUrl = `${baseUrl}teams/league`;
@@ -8,7 +8,7 @@ const singleLeagueUrl = `${baseUrl}teams/league`;
 const leagueTableUrl = `${baseUrl}leagueTable`;
 //https://api-football-v1.p.rapidapi.com/v2/topscorers/{league_id}
 const topScorerUrl = `${baseUrl}topscorers`;
-//https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season} 2019-2020
+//https://api-football-v1.p.rapidapi.com/v2/players/squad/{team_id}/{season}
 const squadUrl = `${baseUrl}players/squad`
 //https://api-football-v1.p.rapidapi.com/v2/leagues/seasonsAvailable/{league_id}
 const leagueBySeasonUrl = `${baseUrl}leagues/seasonsAvailable`
@@ -32,6 +32,7 @@ const currentSeasonsUrl = `${baseUrl}leagues/current`
 const headToHeadUrl = `${baseUrl}fixtures/h2h`;
 //https://api-football-v1.p.rapidapi.com/v2/fixtures/team/{team_id}
 const fixturesByTeamUrl = `${baseUrl}fixtures/team`;
+
 
 export const leagueIds = [2790, 2794, 2725, 2791, 2755, 2743, 2677, 2751, 2833, 2847, 973, 1629, 2857, 2946, 2941, 1601, 2664, 2652, 783, 1237, 2673, 2749, 1591, 2660, 1524, 2826, 949, 2750, 2815, 2816, 1612, 2855, 2824, 2679, 2707, 2787, 1396, 1333, 2277, 3023, 1400, 1522, 2696, 2772, 2874, 3025, 2801, 2715, 1264, 1355, 2777, 2771, 2809]
 
