@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiKey = '944c90463dmsh3535da372e8a4e8p1b256djsn281073c86564';
+const apiKey = '1e4ae9aae4msh52e2ec1e3c388cbp144e25jsn22bf6d67824d';
 const host = 'api-football-v1.p.rapidapi.com'
 const baseUrl = 'https://api-football-v1.p.rapidapi.com/v2/';
 const singleLeagueUrl = `${baseUrl}teams/league`;
